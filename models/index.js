@@ -3,7 +3,7 @@
 let mongoose = require('mongoose');
 let config = require(__dirname + '/../config/env.js');
 
-mongoose.connect(config.MONGO_URI);
+mongoose.connect(config..MONGOLAB_URI);
 
 let models = {};
 
