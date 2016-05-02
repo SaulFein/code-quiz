@@ -1,18 +1,36 @@
 module.exports = function(app) {
-  app.controller('UserController',['$http', function($http){
-    let url = 'http://localhost:3000/api/users'
+  app.controller('UserController',['AuthService', '$http', '$location', function(AuthService, $http, $location){
+    let url = 'http://localhost:3000'
     const vm = this;
     vm.user = [];
     vm.user = ['user'];
 
     vm.createUser = function(user) {
-      $http.post(url, user, {})
+      $http.post(url + '/signup', user, {
+        headers: {
+          token: AuthService.getToken()
+        }
+      })
       .then(function(res){
-        console.log(res);
-        vm.user.push(res.data);
-        vm.newUser = null;
+        if(res.data.message !== "User Already Exists"){
+          console.log(res);
+          vm.user.push(res.data);
+          vm.newUser = null;
+          $location.path('/category');
+        } else {
+          alert("username already exists");
+        }
       });
     };
+
+    vm.signIn = function(user) {
+      console.log(user);
+      AuthService.signIn(user, (err, res) => {
+        if (err) return console.log('Problem Signing In ', err);
+        // vm.error = ErrorService(null);
+        $location.path('/category');
+      })
+    }
 
   }])
 }
