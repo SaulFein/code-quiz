@@ -1,14 +1,10 @@
 <main>
-  <h1>Question:</h1>
-  <ul>
-    <li>A</li>
-    <li>B</li>
-    <li>C</li>
-    <li>D</li>
-  </ul>
+  <h1>Question: {{questionCtrl.curQuestion.question}}</h1>
+    <a ng-repeat="answer in questionCtrl.answers" ng-click="questionCtrl.getAnswer({{answer}})">{{answer}}</a>
+  <button ng-show="questionCtrl.showNextButton" ng-click="questionCtrl.showNextButton = false; questionCtrl.newQuestion()"name="button">next</button>
   <footer>
     <p>Score</p>
-    <a href="home.html">Home</a>
-    <a href="results.html">Finished? Check results here!</a>
+    <a href="#/home">Home</a>
+    <a href="#/results">Finished? Check results here!</a>
   </footer>
 </main>
