@@ -6,8 +6,7 @@ module.exports = (mongoose, models) => {
     choices: Array,
     answer: String,
     category: String,
-    difficulty: String,
-    rating: Number
+    difficulty: String
   });
 
   let Question = mongoose.model('Question', QuestionSchema);
