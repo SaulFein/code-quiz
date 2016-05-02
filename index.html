@@ -4,16 +4,23 @@
   <meta charset="utf-8">
 </head>
   <body ng-app="app">
+
     <main ng-view>Processing</main>
     <div>
      	<p>Name : <input type="text" ng-model="name"></p>
      	<h1>Hello {{name}}</h1>
     </div>
-    <div ng-init="questionCtrl.getQuestions()" ng-controller="QuestionController as questCtrl">
-      {{questCtrl.allQuestions}}
+    <div ng-init="questionCtrl.getQuestions()" ng-controller="QuestionController as questionCtrl">
+      <p ng-repeat="question in questionCtrl.allQuestions">
+        {{question}}
+      </p>
+      <p ng-repeat="question in questionCtrl.catQuestions">
+        {{question}}
+      </p>
+      <button ng-click="questionCtrl.getCategory('css')" name="button">css</button>
     </div>
 
-    <!-- <script src="./node_modules/angular/angular.js"></script> -->
-    <script src="./bundle.js"></script>
+  <!-- <script src="./node_modules/angular/angular.js"></script> -->
+  <script src="./bundle.js"></script>
   </body>
 </html>
