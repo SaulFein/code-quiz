@@ -6,12 +6,21 @@ module.exports = (router, models) => {
 
   router.route('/users/:user/scores')
     .get(jwtAuth, (req, res) => {
-      Score.find({userId: req.params.user}, (err, scores) => {
-        if (err) {
-          return res.send(err);
-        }
-        res.status(200).json({message: 'Returned All Scores', data: scores});
-      });
+      if (!Object.keys(req.query).length) {
+        Score.find({userId: req.params.user}, (err, scores) => {
+          if (err) {
+            return res.send(err);
+          }
+          res.status(200).json({message: 'Returned All Scores', data: scores});
+        });
+      } else {
+        Score.find({userId: req.params.user, category: req.query.category, difficulty: req.query.difficulty}, (err, scores) => {
+          if (err) {
+            return res.send(err);
+          }
+          res.status(200).json({message: 'Returned ScoreId', data: {scoreId: scores[0]._id}});
+        });
+      }
     })
     .post((req, res) => {
       let newScore = new Score(req.body);
