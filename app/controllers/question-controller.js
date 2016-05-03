@@ -53,7 +53,7 @@ module.exports = function(app) {
         return q.difficulty == difficulty
       })
       $window.localStorage.catQuestions = JSON.stringify(vm.catQuestions)
-      vm.scoreData.difficulty = difficulty;
+      vm.scoreData.difficulty = difficulty; //does not work
       // $window.localStorage.scoreData = JSON.stringify(vm.scoreData)
     }
 
@@ -81,7 +81,7 @@ module.exports = function(app) {
         vm.scoreData.questionsWrong ++;
       }
       console.log(vm.scoreData)
-      // ScoreService.createScore(vm.data) /// make data object from info
+      ScoreService.updateScore(vm.scoreData) /// make data object from info
       vm.showNextButton = true;
     }
 

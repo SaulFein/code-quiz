@@ -7,7 +7,10 @@ module.exports = function(app) {
     var scoreService = {};
 
     scoreService.createScore = function(data) {
-      return $http.post(mainRoute + '/users/' + data.userId + '/scores', data);
+      return $http.post(mainRoute + '/users/' + data.userId + '/scores', data)
+      .then((res)=>{
+        console.log(res)
+      });
     };
 
     scoreService.getScores = function(userId) {
@@ -23,6 +26,8 @@ module.exports = function(app) {
         headers: {
           token: AuthService.getToken()
         }
+      }).then((res)=>{
+        console.log(res)
       });
     };
 
@@ -31,6 +36,8 @@ module.exports = function(app) {
         headers: {
           token: AuthService.getToken()
         }
+      }).then((res)=>{
+        console.log(res)
       });
     };
 
