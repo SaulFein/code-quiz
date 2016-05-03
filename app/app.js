@@ -37,4 +37,9 @@ app.config(['$routeProvider', function(router) {
       controllerAs: 'questionCtrl',
       templateUrl: 'templates/game.html'
     })
+    .when('/submit', {
+      controller: 'QuestionController',
+      controllerAs: 'questionCtrl',
+      templateUrl: 'templates/submit.html'
+    })
 }])
