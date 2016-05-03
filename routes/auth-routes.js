@@ -45,7 +45,7 @@ module.exports = (router, models) => {
         let valid = user.compareHash(req.body.password);
 
         if (!valid) {
-          return res.json({message: 'Authentication Failure'});
+          return res.status(401).json({message: 'Authentication Failure'});
         }
         res.status(200).json({message: 'User Logged In', token: user.generateToken(), data: user});
       });

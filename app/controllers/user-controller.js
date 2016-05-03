@@ -6,6 +6,7 @@ module.exports = function(app) {
     vm.user = [];
     vm.user = ['user'];
     vm.uae = false; //uae = user already exists
+    vm.ip = false; //ip = invalid password
 
     vm.createUser = function(user) {
       $http.post(url + '/signup', user, {
@@ -29,8 +30,9 @@ module.exports = function(app) {
       console.log(user);
       AuthService.signIn(user, (err, res) => {
         if (err) {
+          vm.ip = true;
           return console.log('Problem Signing In ', err);
-        }else{
+        } else {
           vm.error = ErrorService(null);
           $location.path('/category');
         }
