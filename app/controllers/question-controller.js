@@ -14,8 +14,8 @@ module.exports = function(app) {
     //   questionsWrong: this.totalQuestions-this.questionsCorrect,
     // };
     vm.scoreData = {
-      category: null,
-      difficulty: null,
+      category: $window.localStorage.category,
+      difficulty: $window.localStorage.difficulty,
       userId: AuthService.getId(),
       totalQuestions: vm.catQuestions.length,
       questionsCorrect: 0,
@@ -44,8 +44,7 @@ module.exports = function(app) {
         return q.category == category;
       })
       $window.localStorage.catQuestions = JSON.stringify(vm.catQuestions)
-      vm.scoreData.category = category;
-      // $window.localStorage.scoreData = JSON.stringify(vm.scoreData)
+      $window.localStorage.category = JSON.stringify(category)
     }
 
     vm.getDifficulty = function(difficulty){
@@ -53,8 +52,7 @@ module.exports = function(app) {
         return q.difficulty == difficulty
       })
       $window.localStorage.catQuestions = JSON.stringify(vm.catQuestions)
-      vm.scoreData.difficulty = difficulty; //does not work
-      // $window.localStorage.scoreData = JSON.stringify(vm.scoreData)
+      $window.localStorage.difficulty = JSON.stringify(difficulty)
     }
 
     vm.newQuestion = function(){
@@ -81,7 +79,7 @@ module.exports = function(app) {
         vm.scoreData.questionsWrong ++;
       }
       console.log(vm.scoreData)
-      ScoreService.updateScore(vm.scoreData) /// make data object from info
+      // ScoreService.updateScore(vm.scoreData) /// make data object from info
       vm.showNextButton = true;
     }
 
