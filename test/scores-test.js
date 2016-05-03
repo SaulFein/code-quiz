@@ -44,7 +44,7 @@ describe('test /users/:user/scores routes', () => {
         expect(res.body.data.username).to.equal('codequizzer');
         expect(res.body.data.password).to.not.equal(null);
         done();
-      })
+      });
   });
 
   after((done) => {
@@ -305,5 +305,5 @@ describe('test /users/:user/scores routes', () => {
           done();
         });
     });
-  })
-})
+  });
+});
