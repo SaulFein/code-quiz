@@ -1,21 +1,33 @@
 'use strict';
 module.exports = function(app) {
-  app.controller('QuestionController',['$http','$window','$location','AuthService', function($http, $window, $location, AuthService){
+  app.controller('QuestionController',['$http','$window','$location','AuthService','ScoreService', function($http, $window, $location, AuthService, ScoreService){
     let url = 'http://localhost:3000/api/questions';
     let vm = this;
     vm.allQuestions = $window.localStorage.allQuestions ? JSON.parse($window.localStorage.allQuestions) : [];
     vm.catQuestions = $window.localStorage.catQuestions ? JSON.parse($window.localStorage.catQuestions) : [];
-    vm.currentPlace = $window.localStorage.currentPlace ? JSON.parse($window.localStorage.currentPlace) : {};
+    // vm.scoreData = $window.localStorage.scoreData ? JSON.parse($window.localStorage.scoreData) : {
+    //   category: null,
+    //   difficulty: null,
+    //   userId: AuthService.getId(),
+    //   totalQuestions: vm.catQuestions.length,
+    //   questionsCorrect: 0,
+    //   questionsWrong: this.totalQuestions-this.questionsCorrect,
+    // };
+    vm.scoreData = {
+      category: null,
+      difficulty: null,
+      userId: AuthService.getId(),
+      totalQuestions: vm.catQuestions.length,
+      questionsCorrect: 0,
+      questionsWrong: 0,
+    };
     vm.showNextButton;
-    // vm.correct = $window.localStorage.correct || 0;
     vm.count = $window.localStorage.count || 0;
-    // vm.score = vm.correct/vm.score || 0;
     vm.curQuestion = vm.catQuestions[vm.count];
     vm.answers = vm.curQuestion ? vm.curQuestion.choices : null;
 
+
     vm.getQuestions = function(){
-      console.log(vm.curQuestion)
-      console.log(vm.count)
       if(!vm.allQuestions.length)
       $http.get(url)
         .then((res) => {
@@ -32,8 +44,8 @@ module.exports = function(app) {
         return q.category == category;
       })
       $window.localStorage.catQuestions = JSON.stringify(vm.catQuestions)
-      vm.currentPlace['category'] = category;
-      $window.localStorage.currentPlace = JSON.stringify(vm.currentPlace)
+      vm.scoreData.category = category;
+      // $window.localStorage.scoreData = JSON.stringify(vm.scoreData)
     }
 
     vm.getDifficulty = function(difficulty){
@@ -41,8 +53,8 @@ module.exports = function(app) {
         return q.difficulty == difficulty
       })
       $window.localStorage.catQuestions = JSON.stringify(vm.catQuestions)
-      vm.currentPlace['difficulty'] = difficulty;
-      $window.localStorage.currentPlace = JSON.stringify(vm.currentPlace)
+      vm.scoreData.difficulty = difficulty;
+      // $window.localStorage.scoreData = JSON.stringify(vm.scoreData)
     }
 
     vm.newQuestion = function(){
@@ -62,17 +74,19 @@ module.exports = function(app) {
 
     vm.getAnswer = function(answer){
       if(answer == vm.curQuestion.answer) {
-        console.log('correct')
+        console.log('correct');
+        vm.scoreData.questionsCorrect ++;
       } else {
-        console.log('in-corr-ect')
+        console.log('in-corr-ect');
+        vm.scoreData.questionsWrong ++;
       }
-      console.log(vm.count)
+      console.log(vm.scoreData)
+      // ScoreService.createScore(vm.data) /// make data object from info
       vm.showNextButton = true;
     }
 
     vm.submit = function(q){
-      q.choices = [q.choices[0],q.choices[1],q.choices[2],q.choices[3]]
-      console.log(q)
+      q.choices = [q.choices[0],q.choices[1],q.choices[2],q.choices[3]];
       $http.post(url, q, {
         headers: {
           token: AuthService.getToken()
@@ -85,7 +99,7 @@ module.exports = function(app) {
 
     vm.resetQuestions = function(){
       vm.count = $window.localStorage.count = 0;
-      vm.currentPlace = $window.localStorage.currentPlace = {}
+
     }
 
   }])
