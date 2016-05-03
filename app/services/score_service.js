@@ -13,7 +13,7 @@ module.exports = function(app) {
     scoreService.getScores = function(userId) {
       return $http.get(mainRoute + '/users/' + userId + '/scores', {
         headers: {
-          token: AuthService.getToken();
+          token: AuthService.getToken()
         }
       })
     };
@@ -21,7 +21,7 @@ module.exports = function(app) {
     scoreService.getScore = function(data) {
       return $http.get(mainRoute + '/users/' + data.userId + '/scores/' + data.scoreId, {
         headers: {
-          token: AuthService.getToken();
+          token: AuthService.getToken()
         }
       });
     };
@@ -29,7 +29,7 @@ module.exports = function(app) {
     scoreService.updateScore = function(data) {
       return $http.put(mainRoute + '/users/' + data.userId + '/scores/' + data.scoreId, data, {
         headers: {
-          token: AuthService.getToken();
+          token: AuthService.getToken()
         }
       });
     };
@@ -37,7 +37,7 @@ module.exports = function(app) {
     scoreService.resetScore = function(data) {
       return $http.delete(mainRoute + '/users/' + data.userId + '/scores/' + data.scoreId, {
         headers: {
-          token: AuthService.getToken();
+          token: AuthService.getToken()
         }
       });
     };
