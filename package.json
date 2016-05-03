@@ -17,13 +17,21 @@
     "morgan": "^1.7.0"
   },
   "devDependencies": {
+    "angular-mocks": "^1.5.5",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
     "gulp": "^3.9.1",
     "gulp-jshint": "^2.0.0",
+    "gulp-karma": "0.0.5",
     "gulp-mocha": "^2.2.0",
+    "jasmine": "^2.4.1",
+    "jasmine-core": "^2.4.1",
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.1.0",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-jasmine": "^0.3.8",
+    "protractor": "^3.3.0",
     "webpack-stream": "^3.2.0"
   },
   "scripts": {
