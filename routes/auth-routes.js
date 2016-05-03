@@ -39,14 +39,13 @@ module.exports = (router, models) => {
         if (err) {
           return res.send(err);
         }
-
         if (!user) {
           return res.status(401).json({message: 'User Not Found'});
         }
         let valid = user.compareHash(req.body.password);
 
         if (!valid) {
-          return res.json({message: 'Authentication Failure'});
+          return res.status(401).json({message: 'Authentication Failure'});
         }
         res.status(200).json({message: 'User Logged In', token: user.generateToken(), data: user});
       });

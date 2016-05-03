@@ -6,6 +6,7 @@ require('angular-route')
 var app = angular.module('app',['ngRoute'])
 
 require('./services/auth_service')(app);
+require('./services/error_service')(app);
 require('./controllers/question-controller.js')(app)
 require('./controllers/user-controller.js')(app)
 
@@ -25,5 +26,15 @@ app.config(['$routeProvider', function(router) {
       controller: 'QuestionController',
       controllerAs: 'questionCtrl',
       templateUrl: 'templates/category.html'
+    })
+    .when('/difficulty', {
+      controller: 'QuestionController',
+      controllerAs: 'questionCtrl',
+      templateUrl: 'templates/difficulty.html'
+    })
+    .when('/game', {
+      controller: 'QuestionController',
+      controllerAs: 'questionCtrl',
+      templateUrl: 'templates/game.html'
     })
 }])

@@ -1,6 +1,7 @@
 <main>
+  {{questionCtrl.currentPlace.category}} {{questionCtrl.currentPlace.difficulty}}
   <h1>Question: {{questionCtrl.curQuestion.question}}</h1>
-    <a ng-repeat="answer in questionCtrl.answers" ng-click="questionCtrl.getAnswer({{answer}})">{{answer}}</a>
+    <p ng-repeat="answer in questionCtrl.answers"><a href=""  ng-click="questionCtrl.getAnswer(answer)">{{answer}}</a></p>
   <button ng-show="questionCtrl.showNextButton" ng-click="questionCtrl.showNextButton = false; questionCtrl.newQuestion()"name="button">next</button>
   <footer>
     <p>Score</p>
