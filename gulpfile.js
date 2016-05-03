@@ -4,7 +4,9 @@ const gulp = require('gulp');
 const jshint = require('gulp-jshint');
 const stylish = require('jshint-stylish');
 const mocha = require('gulp-mocha');
-const webpack = require('webpack-stream')
+const webpack = require('webpack-stream');
+const sass = require('gulp-sass');
+
 
 let paths = ['*.js', 'config/*.js', 'lib/*.js', 'models/*.js', 'routes/*.js', 'test/*.js'];
 let sources = {
@@ -45,6 +47,11 @@ gulp.task('build:html', function(){
   .pipe(gulp.dest('./build'));
 });
 
+gulp.task('build:css', ['sass'], function(){
+  return gulp.src(['./style/style.css', './style/skeleton.css'])
+  .pipe(gulp.dest('./build/style'));
+});
+
 gulp.task('build:templates', function(){
   return gulp.src(['./app/templates/**'])
   .pipe(gulp.dest('./build/templates'));
@@ -77,8 +84,13 @@ gulp.task('bundle', function(){
   .pipe(gulp.dest('./build'));
 });
 
+gulp.task('sass', function () {
+  return gulp.src('./style/sass/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./style'));
+});
 
-gulp.task('build', ['build:html', 'build:templates', 'bundle'])
+gulp.task('build', ['build:html', 'build:templates', 'bundle', 'build:css'])
 
 gulp.task('default', ['lint', 'mocha']);
 

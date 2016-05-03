@@ -1,13 +1,14 @@
 <main>
-  <h1>Code Quiz</h1>
-  <h4>Score a great job!</h4>
-  <form ng-submit="userctrl.createUser(user)">
-    <input type="text" placeholder="username" value="username" ng-model="user.username"/>
+  <h1 id="hometitle">Code Quiz</h1>
+  <h4 id="tagline">Score a great job!</h4>
+  <form id="sign-in-form" ng-submit="userctrl.createUser(user)">
 
-    <span ng-show="userctrl.uae">Username already exists!</span>
+    <input id="un-field" type="text" placeholder="username" value="username" ng-model="user.username"/>
 
-    <input type="text" placeholder="password" value="password" ng-model="user.password"/>
-    <button type="submit">SignUp</button>
+    <p id="uae" ng-show="userctrl.uae">Username already exists!</p>
+
+    <input id="pw-field" type="text" placeholder="password" value="password" ng-model="user.password"/>
+    <button id="signup-button" type="submit">SignUp</button>
   </form>
-  <p>Already have an account? <a href="#/login">Login</a> here!</p>
+  <p id="login-link">Already have an account? <a href="#/login">Login</a> here!</p>
 </main>
