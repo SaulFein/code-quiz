@@ -1,9 +1,7 @@
 'use strict';
 module.exports = function(app) {
   app.controller('QuestionController',['$http','$window','$location', function($http, $window, $location){
-    let url = 'http://localhost:3000/api/questions'
-    this.allQuestions = []
-    this.catQuestions = []
+    let url = 'http://localhost:3000/api/questions';
     this.allQuestions = $window.localStorage.allQuestions ? JSON.parse($window.localStorage.allQuestions) : [];
     this.catQuestions = $window.localStorage.catQuestions ? JSON.parse($window.localStorage.catQuestions) : [];
     this.showNextButton;
@@ -24,18 +22,12 @@ module.exports = function(app) {
     this.getCategory = function(category){
       if(!this.catQuestions.length)
       if (category == 'All') return this.catQuestions = this.allQuestions;
-      console.log(category)
       this.catQuestions = this.allQuestions.filter((q) => {
-        console.log(q)
-        console.log('qcat ',q.category)
-        console.log('cat', category)
         return q.category == category;
       })
-      console.log(this.catQuestions)
-      console.log(this.allQuestions)
       $window.localStorage.catQuestions = JSON.stringify(this.catQuestions)
       this.currentPlace['category'] = category;
-      console.log(this.currentPlace)
+      $window.localStorage.currentPlace = JSON.stringify(this.currentPlace)
     }
 
     this.getDifficulty = function(difficulty){
@@ -44,9 +36,7 @@ module.exports = function(app) {
       })
       $window.localStorage.catQuestions = JSON.stringify(this.catQuestions)
       this.currentPlace['difficulty'] = difficulty;
-      console.log(this.currentPlace)
-      console.log(this.catQuestions)
-      console.log(this.allQuestions)
+      $window.localStorage.currentPlace = JSON.stringify(this.currentPlace)
     }
 
     this.newQuestion = function(){
