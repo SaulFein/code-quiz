@@ -13,7 +13,8 @@ module.exports = (mongoose, models) => {
     password: {
       type: String,
       required: true
-    }
+    },
+    scores: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Score' }]
   });
 
   UserSchema.pre('save', function(next) {

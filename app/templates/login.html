@@ -1,0 +1,12 @@
+<main>
+  <h1>Code Quiz</h1>
+  <h4>Score a great job!</h4>
+  <form ng-submit="userctrl.signIn(user)">
+    <input type="text" placeholder="username" value="username" ng-model="user.username"/>
+    <input type="text" placeholder="password" value="password" ng-model="user.password"/>
+    <span ng-show="userctrl.ip">Invalid password!</span>
+
+    <button type="submit">Login</button>
+  </form>
+  <p>Dont have an account yet? <a href="#/home">Sign Up</a> here!</p>
+</main>

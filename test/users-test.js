@@ -13,8 +13,8 @@ let userId;
 let userToken;
 
 let userJSON = {
-  username: 'treehuggers',
-  password: 'treelovers'
+  username: 'codequizzer',
+  password: 'winner'
 };
 
 describe('test /users routes', () => {
@@ -33,7 +33,7 @@ describe('test /users routes', () => {
           expect(res.body.data).to.have.property('username');
           expect(res.body.data).to.have.property('password');
           expect(res.body.token).to.not.equal(null);
-          expect(res.body.data.username).to.equal('treehuggers');
+          expect(res.body.data.username).to.equal('codequizzer');
           expect(res.body.data.password).to.not.equal(null);
           done();
         });
@@ -64,7 +64,7 @@ describe('test /users routes', () => {
           data = data[data.length - 1];
           expect(data).to.have.property('username');
           expect(data).to.have.property('password');
-          expect(data.username).to.equal('treehuggers');
+          expect(data.username).to.equal('codequizzer');
           expect(data.password).to.not.equal(null);
           done();
         });
@@ -80,7 +80,7 @@ describe('test /users routes', () => {
           expect(res).to.be.json;
           expect(res.body.data).to.have.property('username');
           expect(res.body.data).to.have.property('password');
-          expect(res.body.data.username).to.equal('treehuggers');
+          expect(res.body.data.username).to.equal('codequizzer');
           expect(res.body.data.password).to.not.equal(null);
           done();
         });
@@ -115,7 +115,7 @@ describe('test /users routes', () => {
           expect(res.body.data).to.have.property('username');
           expect(res.body.data).to.have.property('password');
           expect(res.body.token).to.not.equal(null);
-          expect(res.body.data.username).to.equal('treehuggers');
+          expect(res.body.data.username).to.equal('codequizzer');
           expect(res.body.data.password).to.not.equal(null);
           done();
         });
@@ -137,7 +137,7 @@ describe('test /users routes', () => {
           expect(res.body.data).to.have.property('username');
           expect(res.body.data).to.have.property('password');
           expect(res.body.token).to.not.equal(null);
-          expect(res.body.data.username).to.equal('treehuggers');
+          expect(res.body.data.username).to.equal('codequizzer');
           expect(res.body.data.password).to.not.equal(null);
           done();
         });
@@ -160,14 +160,14 @@ describe('test /users routes', () => {
       request('localhost:' + config.PORT)
         .put('/api/users/' + userId)
         .set('token', userToken)
-        .send({username: 'treehuggers2'})
+        .send({username: 'codequizzer2'})
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
           expect(res).to.be.json;
           expect(res.body.data).to.have.property('username');
           expect(res.body.data).to.have.property('password');
-          expect(res.body.data.username).to.equal('treehuggers2');
+          expect(res.body.data.username).to.equal('codequizzer2');
           expect(res.body.data.password).to.not.equal(null);
           done();
         });
@@ -189,7 +189,7 @@ describe('test /users routes', () => {
           expect(res.body.data).to.have.property('username');
           expect(res.body.data).to.have.property('password');
           expect(res.body.token).to.not.equal(null);
-          expect(res.body.data.username).to.equal('treehuggers');
+          expect(res.body.data.username).to.equal('codequizzer');
           expect(res.body.data.password).to.not.equal(null);
           done();
         });
