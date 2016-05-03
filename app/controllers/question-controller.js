@@ -2,65 +2,75 @@
 module.exports = function(app) {
   app.controller('QuestionController',['$http','$window','$location','AuthService', function($http, $window, $location, AuthService){
     let url = 'http://localhost:3000/api/questions';
-    this.allQuestions = $window.localStorage.allQuestions ? JSON.parse($window.localStorage.allQuestions) : [];
-    this.catQuestions = $window.localStorage.catQuestions ? JSON.parse($window.localStorage.catQuestions) : [];
-    this.currentPlace = $window.localStorage.currentPlace ? JSON.parse($window.localStorage.currentPlace) : {};
-    this.showNextButton;
-    this.count = $window.localStorage.count || 0 ; // show {{question[questionCtrl.count]}}
-    this.curQuestion = this.catQuestions[this.count];
-    this.answers = this.curQuestion ? this.curQuestion.choices : null;
+    let vm = this;
+    vm.allQuestions = $window.localStorage.allQuestions ? JSON.parse($window.localStorage.allQuestions) : [];
+    vm.catQuestions = $window.localStorage.catQuestions ? JSON.parse($window.localStorage.catQuestions) : [];
+    vm.currentPlace = $window.localStorage.currentPlace ? JSON.parse($window.localStorage.currentPlace) : {};
+    vm.showNextButton;
+    // vm.correct = $window.localStorage.correct || 0;
+    vm.count = $window.localStorage.count || 0;
+    // vm.score = vm.correct/vm.score || 0;
+    vm.curQuestion = vm.catQuestions[vm.count];
+    vm.answers = vm.curQuestion ? vm.curQuestion.choices : null;
 
-    this.getQuestions = function(){
-      if(!this.allQuestions.length)
+    vm.getQuestions = function(){
+      console.log(vm.curQuestion)
+      console.log(vm.count)
+      if(!vm.allQuestions.length)
       $http.get(url)
         .then((res) => {
-          this.allQuestions = res.data.data;
-          console.log(this.allQuestions)
-          $window.localStorage.allQuestions = JSON.stringify(this.allQuestions)
+          vm.allQuestions = res.data.data;
+          console.log(vm.allQuestions)
+          $window.localStorage.allQuestions = JSON.stringify(vm.allQuestions)
         })
     }
 
-    this.getCategory = function(category){
-      if(!this.catQuestions.length)
-      if (category == 'All') return this.catQuestions = this.allQuestions;
-      this.catQuestions = this.allQuestions.filter((q) => {
+    vm.getCategory = function(category){
+      if(!vm.catQuestions.length)
+      if (category == 'All') return vm.catQuestions = vm.allQuestions;
+      vm.catQuestions = vm.allQuestions.filter((q) => {
         return q.category == category;
       })
-      $window.localStorage.catQuestions = JSON.stringify(this.catQuestions)
-      this.currentPlace['category'] = category;
-      $window.localStorage.currentPlace = JSON.stringify(this.currentPlace)
+      $window.localStorage.catQuestions = JSON.stringify(vm.catQuestions)
+      vm.currentPlace['category'] = category;
+      $window.localStorage.currentPlace = JSON.stringify(vm.currentPlace)
     }
 
-    this.getDifficulty = function(difficulty){
-      this.catQuestions = this.catQuestions.filter((q) => {
+    vm.getDifficulty = function(difficulty){
+      vm.catQuestions = vm.catQuestions.filter((q) => {
         return q.difficulty == difficulty
       })
-      $window.localStorage.catQuestions = JSON.stringify(this.catQuestions)
-      this.currentPlace['difficulty'] = difficulty;
-      $window.localStorage.currentPlace = JSON.stringify(this.currentPlace)
+      $window.localStorage.catQuestions = JSON.stringify(vm.catQuestions)
+      vm.currentPlace['difficulty'] = difficulty;
+      $window.localStorage.currentPlace = JSON.stringify(vm.currentPlace)
     }
 
-    this.newQuestion = function(){
-      if (this.count < this.catQuestions.length - 1) {
-        this.count += 1;
-        $window.localStorage.count = this.count;
+    vm.newQuestion = function(){
+      console.log(vm.curQuestion)
+      if (vm.count < vm.catQuestions.length - 1) {
+        vm.count ++;
+        $window.localStorage.count = vm.count;
+        vm.curQuestion = vm.catQuestions[vm.count];
+        vm.answers = vm.curQuestion.choices;
       } else {
         console.log('done')
-        this.count = null;
+        vm.count = $window.localStorage.count = 0;
         $location.path('/results')
       }
+            console.log(vm.curQuestion)
     }
 
-    this.getAnswer = function(answer){
-      if(answer == this.curQuestion.answer) {
+    vm.getAnswer = function(answer){
+      if(answer == vm.curQuestion.answer) {
         console.log('correct')
       } else {
         console.log('in-corr-ect')
       }
-      this.showNextButton = true;
+      console.log(vm.count)
+      vm.showNextButton = true;
     }
 
-    this.submit = function(q){
+    vm.submit = function(q){
       q.choices = [q.choices[0],q.choices[1],q.choices[2],q.choices[3]]
       console.log(q)
       $http.post(url, q, {
@@ -73,8 +83,9 @@ module.exports = function(app) {
       })
     }
 
-    this.resetQuestions = function(){
-      this.count = this.$window.localStorage.count = 0;
+    vm.resetQuestions = function(){
+      vm.count = $window.localStorage.count = 0;
+      vm.currentPlace = $window.localStorage.currentPlace = {}
     }
 
   }])
