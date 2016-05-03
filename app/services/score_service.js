@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
   app.factory('ScoreService', ['$http', 'AuthService', function($http, AuthService) {
-    const mainRoute = "http://localhost:3000/api/";
+    const mainRoute = "http://localhost:3000/api";
 
     var scoreService = {};
 
