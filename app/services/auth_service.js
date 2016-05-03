@@ -22,7 +22,7 @@ module.exports = function(app) {
         if (cb) cb();
       },
       signIn(user, cb) {
-        console.log(user);
+        console.log('signIn from auth serv ', user)
         cb || function() {};
         $http.post(url + '/login', {}, {
           headers: {
@@ -30,6 +30,7 @@ module.exports = function(app) {
           }
         }).then((res) => {
           token = $window.localStorage.token = res.data.token;
+          console.log('This is token ', token)
           cb(null, res);
         }, (err) => {
           cb(err);

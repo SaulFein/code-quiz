@@ -1,9 +1,11 @@
 module.exports = function(app) {
-  app.controller('UserController',['AuthService', '$http', '$location', function(AuthService, $http, $location){
+  app.controller('UserController',['AuthService', 'ErrorService', '$http', '$location',
+  function(AuthService, ErrorService, $http, $location){
     let url = 'http://localhost:3000'
     const vm = this;
     vm.user = [];
     vm.user = ['user'];
+    vm.uae = false; //uae = user already exists
 
     vm.createUser = function(user) {
       $http.post(url + '/signup', user, {
@@ -18,7 +20,7 @@ module.exports = function(app) {
           vm.newUser = null;
           $location.path('/category');
         } else {
-          alert("username already exists");
+          vm.uae = true;
         }
       });
     };
@@ -26,9 +28,12 @@ module.exports = function(app) {
     vm.signIn = function(user) {
       console.log(user);
       AuthService.signIn(user, (err, res) => {
-        if (err) return console.log('Problem Signing In ', err);
-        // vm.error = ErrorService(null);
-        $location.path('/category');
+        if (err) {
+          return console.log('Problem Signing In ', err);
+        }else{
+          vm.error = ErrorService(null);
+          $location.path('/category');
+        }
       })
     }
 

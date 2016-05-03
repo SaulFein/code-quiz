@@ -39,7 +39,6 @@ module.exports = (router, models) => {
         if (err) {
           return res.send(err);
         }
-
         if (!user) {
           return res.status(401).json({message: 'User Not Found'});
         }
