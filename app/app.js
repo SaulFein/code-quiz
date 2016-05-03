@@ -27,4 +27,14 @@ app.config(['$routeProvider', function(router) {
       controllerAs: 'questionCtrl',
       templateUrl: 'templates/category.html'
     })
+    .when('/difficulty', {
+      controller: 'QuestionController',
+      controllerAs: 'questionCtrl',
+      templateUrl: 'templates/difficulty.html'
+    })
+    .when('/game', {
+      controller: 'QuestionController',
+      controllerAs: 'questionCtrl',
+      templateUrl: 'templates/game.html'
+    })
 }])
