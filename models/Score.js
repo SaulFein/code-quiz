@@ -3,7 +3,7 @@
 module.exports = (mongoose, models) => {
   let ScoreSchema = mongoose.Schema({
     userId: {
-      type: Number,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     },
     category: String,

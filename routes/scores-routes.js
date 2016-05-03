@@ -14,15 +14,8 @@ module.exports = (router, models) => {
       });
     })
     .post((req, res) => {
-      var newScore = new Score(req.body);
+      let newScore = new Score(req.body);
       newScore.userId = req.params.user;
-      newScore.category = req.body.category;
-      newScore.difficulty = req.body.difficulty;
-      newScore.totalQuestions = req.body.totalQuestions;
-      newScore.completedQuestions = req.body.completedQuestions;
-      newScore.questionsCorrect = req.body.questionsCorrect;
-      newScore.questionsWrong = req.body.questionsWrong;
-
       newScore.save((err, score) => {
         if (err) {
           return res.json({message: 'Error Saving New Score', error: err});
