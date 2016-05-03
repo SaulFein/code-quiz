@@ -14,7 +14,9 @@ module.exports = (router, models) => {
         }
 
         if (user) {
-          return res.json({message: 'User Already Exists'});
+          res.json({message: 'User Already Exists'});
+          return console.log("User Exists-----------")
+
         }
 
         if (!user) {
