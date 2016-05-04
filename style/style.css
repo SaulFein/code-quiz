@@ -12,14 +12,12 @@ body {
   height: 100%; }
 
 #home-main {
-  height: 60%;
   width: 100%; }
 
 #hometitle {
   color: red;
   font-size: 6em;
-  text-align: center;
-  height: 20%; }
+  text-align: center; }
 
 #tagline {
   font-size: 4em;
@@ -79,6 +77,8 @@ body {
 
 #login-button {
   width: 75%;
+  height: 2em;
+  font-size: 3em;
   box-sizing: border-box; }
 
 #ip {
@@ -86,16 +86,27 @@ body {
   width: 75%;
   margin: auto; }
 
+#cat-main {
+  width: 100%; }
+
 #cat-title {
-  text-align: center; }
+  color: red;
+  text-align: center;
+  font-size: 6em; }
 
 #cat-form {
   text-align: center;
   list-style-type: none;
-  margin: auto; }
+  width: 100%; }
+
+#cat-form li {
+  width: 100%; }
 
 #cat-form button {
-  width: 75%; }
+  width: 75%;
+  height: 2em;
+  font-size: 3em;
+  box-sizing: border-box; }
 
 #dif-title {
   text-align: center; }

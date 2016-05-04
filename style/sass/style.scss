@@ -14,7 +14,6 @@ body {
 }
 // home template styling ---------------
 #home-main {
-  height: 60%;
   width: 100%;
 }
 
@@ -22,7 +21,7 @@ body {
   color: red;
   font-size: 6em;
   text-align: center;
-  height: 20%;
+  // height: 20%;
 }
 
 #tagline {
@@ -31,7 +30,6 @@ body {
 }
 
 #sign-in-form {
-  // font-size: 3em;
   text-align: center;
 }
 
@@ -99,6 +97,8 @@ body {
 
 #login-button{
   width: 75%;
+  height: 2em;
+  font-size: 3em;
   box-sizing: border-box;
 }
 
@@ -109,19 +109,32 @@ body {
 }
 //------------------------------------------
 // category template styling ---------------
+#cat-main {
+  width: 100%;
+}
+
 #cat-title {
+  color: red;
   text-align: center;
+  font-size: 6em;
 }
 
 #cat-form {
   text-align: center;
   list-style-type: none;
-  // width: 75%;
-  margin: auto;
+  width: 100%;
+  // margin: auto;
+}
+
+#cat-form li{
+  width: 100%;
 }
 
 #cat-form button{
   width: 75%;
+  height: 2em;
+  font-size: 3em;
+  box-sizing: border-box;
 }
 //------------------------------------------
 // difficulty template styling -------------
