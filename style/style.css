@@ -186,3 +186,9 @@ body {
 
 #results-footer {
   text-align: center; }
+
+#submit-form input {
+  width: 100%; }
+
+#submit-form select {
+  width: 100%; }
