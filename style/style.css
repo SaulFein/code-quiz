@@ -172,3 +172,17 @@ body {
 
 #cat-dif {
   text-align: center; }
+
+#results-main {
+  width: 100%; }
+
+#results-title {
+  color: red;
+  text-align: center;
+  font-size: 6em; }
+
+#results-score {
+  text-align: center; }
+
+#results-footer {
+  text-align: center; }
