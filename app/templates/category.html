@@ -1,6 +1,7 @@
 <main ng-init="questionCtrl.getQuestions()">
-  <h1 id="cat-title">Select a Category</h1>
+  <h1 id="cat-title" ng-init="questionCtrl.getPosition()">Select a Category</h1>
   <ul id="cat-form">
+    <li><a href="#/game" ng-click="questionCtrl.resume()" ng-show="questionCtrl.scoreData.completedQuestions"><button>Resume</button></a></li>
     <li><a href="#/difficulty" ng-click="questionCtrl.getCategory('All')"><button>All</button></a></li>
     <li><a href="#/difficulty" ng-click="questionCtrl.getCategory('Data Structures')"><button>Data Structures</button></a></li>
     <li><a href="#/difficulty" ng-click="questionCtrl.getCategory('JavaScript')"><button>JavaScript</button></a></li>

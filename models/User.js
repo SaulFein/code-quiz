@@ -14,6 +14,7 @@ module.exports = (mongoose, models) => {
       type: String,
       required: true
     },
+    position: Object,
     scores: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Score' }]
   });
 

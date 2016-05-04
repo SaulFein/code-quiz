@@ -13,19 +13,52 @@ module.exports = function(app) {
     //   questionsCorrect: 0,
     //   questionsWrong: this.totalQuestions-this.questionsCorrect,
     // };
+    // vm.scoreData = {
+    //   category: $window.localStorage.category,
+    //   difficulty: $window.localStorage.difficulty,
+    //   userId: AuthService.getId(),
+    //   totalQuestions: vm.catQuestions.length,
+    //   questionsCorrect: 0,
+    //   questionsWrong: 0,
+    //   completedQuestions: 0,
+    // };
+
     vm.scoreData = {
-      category: $window.localStorage.category,
-      difficulty: $window.localStorage.difficulty,
-      userId: AuthService.getId(),
-      totalQuestions: vm.catQuestions.length,
-      questionsCorrect: 0,
-      questionsWrong: 0,
+      category: $window.localStorage.category ? JSON.parse($window.localStorage.category) : null,
+      difficulty: $window.localStorage.difficulty ? JSON.parse($window.localStorage.difficulty) : null,
+      questionsCorrect: $window.localStorage.correct ? $window.localStorage.correct : 0,
+      completedQuestions: $window.localStorage.count ? $window.localStorage.count : 0,
+      questionsWrong: $window.localStorage.wrong ? $window.localStorage.wrong : 0,
     };
+
     vm.showNextButton;
-    vm.count = $window.localStorage.count || 0;
+    vm.count = vm.scoreData.completedQuestions || $window.localStorage.count || 0;
     vm.curQuestion = vm.catQuestions[vm.count];
     vm.answers = vm.curQuestion ? vm.curQuestion.choices : null;
 
+    vm.getPosition = function(){
+      $http.get('http://localhost:3000/api/users/' + AuthService.getId(), {
+        headers: {
+          token: AuthService.getToken()
+        }
+      })
+      .then((res)=>{
+        console.log(res.data.data.position)
+        if(res.data.data.position){
+          vm.scoreData = res.data.data.position;
+        }
+      })
+    }
+
+    vm.resume = function(){
+      console.log(vm.scoreData)
+      vm.getCategory(vm.scoreData.category)
+      vm.getDifficulty(vm.scoreData.difficulty)
+      $window.localStorage.count = vm.count = vm.scoreData.completedQuestions;
+      $window.localStorage.wrong = vm.scoreData.questionsWrong;
+      $window.localStorage.correct = vm.scoreData.questionsCorrect;
+      console.log('scoreDetta', vm.scoreData)
+    }
 
     vm.getQuestions = function(){
       if(!vm.allQuestions.length)
@@ -64,23 +97,41 @@ module.exports = function(app) {
         vm.answers = vm.curQuestion.choices;
       } else {
         console.log('done')
+        vm.updatePos({position:{}})
         vm.count = $window.localStorage.count = 0;
+        vm.scoreData.completedQuestions = 0;
+        $window.localStorage.wrong = 0;
+        $window.localStorage.correct = 0;
         $location.path('/results')
       }
-            console.log(vm.curQuestion)
     }
 
     vm.getAnswer = function(answer){
       if(answer == vm.curQuestion.answer) {
         console.log('correct');
         vm.scoreData.questionsCorrect ++;
+        $window.localStorage.correct = vm.scoreData.questionsCorrect;
       } else {
         console.log('in-corr-ect');
         vm.scoreData.questionsWrong ++;
+        $window.localStorage.wrong = vm.scoreData.questionsWrong;
       }
+      vm.scoreData.completedQuestions ++;
       console.log(vm.scoreData)
-      // ScoreService.updateScore(vm.scoreData) /// make data object from info
       vm.showNextButton = true;
+      console.log('atUpdat', vm.scoreData)
+      vm.updatePos({position: vm.scoreData});
+      // ScoreService.updateScore(vm.scoreData) /// make data object from info
+    }
+
+    vm.updatePos = function(data){
+      $http.put('http://localhost:3000/api/users/' + AuthService.getId(), data, {
+        headers: {
+          token: AuthService.getToken()
+        }
+      }).then((res)=>{
+        console.log('updated position ', res.data.data.position)
+      })
     }
 
     vm.submit = function(q){
