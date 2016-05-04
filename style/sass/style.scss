@@ -138,33 +138,66 @@ body {
 }
 //------------------------------------------
 // difficulty template styling -------------
+#dif-main {
+  width: 100%;
+}
+
 #dif-title {
+  color: red;
   text-align: center;
+  font-size: 6em;
 }
 
 #dif-form {
   text-align: center;
   list-style-type: none;
-  // width: 75%;
-  margin: auto;
+  width: 100%;
+}
+
+#cat-form li{
+  width: 100%;
 }
 
 #dif-form button{
   width: 75%;
+  height: 2em;
+  font-size: 3em;
+  box-sizing: border-box;
 }
 //------------------------------------------
 // game template styling -------------------
+#game-main {
+  width: 100%;
+}
+
 #game-title {
+  color: red;
   text-align: center;
+  font-size: 6em;
 }
 
 #answer-choices {
   text-align: center;
   box-sizing: border-box;
 }
-
-#answer-buttons {
+#answer-choices button {
   width: 75%;
+  height: 2em;
+  font-size: 3em;
+  box-sizing: border-box;
+}
+
+#next-wrap {
+  text-align: center;
+}
+
+#next-button {
+  text-align: center;
+  display: inline-block;
+  width: 75%;
+  height: 2em;
+  font-size: 3em;
+  box-sizing: border-box;
 }
 
 #score {
