@@ -68,6 +68,13 @@ describe('score service tests', () => {
       $httpBackend.flush();
     });
 
+    it('should get score id', () => {
+      $httpBackend.expectGET('http://localhost:3000/api/users/userId/scores?category=JavaScript&difficulty=Easy')
+        .respond(200, {"message": "Returned ScoreId", "data": {"scoreId": "57292656a257bb6665801e22"}})
+      ScoreService.getScoreId({userId: 'userId', category: 'JavaScript', difficulty: 'Easy'});
+      $httpBackend.flush();
+    });
+
     it('should get a score', () => {
       $httpBackend.expectGET('http://localhost:3000/api/users/userId/scores/scoreId')
         .respond(200, {data: { _id: 'scoreId',

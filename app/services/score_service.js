@@ -31,6 +31,14 @@ module.exports = function(app) {
       });
     };
 
+    scoreService.getScoreId = function(data) {
+      return $http.get(mainRoute + '/users/' + data.userId + '/scores?category=' + data.category + '&difficulty=' + data.difficulty, {
+        headers: {
+          token: AuthService.getToken()
+        }
+      });
+    }
+
     scoreService.updateScore = function(data) {
       return $http.put(mainRoute + '/users/' + data.userId + '/scores/' + data.scoreId, data, {
         headers: {
