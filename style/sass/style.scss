@@ -1,14 +1,37 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+#index-main {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
 // home template styling ---------------
+#home-main {
+  height: 60%;
+  width: 100%;
+}
+
 #hometitle {
   color: red;
+  font-size: 6em;
   text-align: center;
+  height: 20%;
 }
 
 #tagline {
+  font-size: 4em;
   text-align: center;
 }
 
 #sign-in-form {
+  // font-size: 3em;
   text-align: center;
 }
 
@@ -17,17 +40,25 @@
 }
 
 #un-field{
+  text-align: center;
   width: 75%;
+  height: 100%;
+  font-size: 4em;
   box-sizing: border-box;
 }
 
 #pw-field{
+  font-size: 4em;
+  text-align: center;
   width: 75%;
+  height: 100%;
   box-sizing: border-box;
 }
 
 #signup-button{
   width: 75%;
+  height: 2em;
+  font-size: 3em;
   box-sizing: border-box;
 }
 
@@ -83,5 +114,60 @@
 }
 
 #cat-form {
+  text-align: center;
+  list-style-type: none;
+  // width: 75%;
+  margin: auto;
+}
+
+#cat-form button{
+  width: 75%;
+}
+//------------------------------------------
+// difficulty template styling -------------
+#dif-title {
+  text-align: center;
+}
+
+#dif-form {
+  text-align: center;
+  list-style-type: none;
+  // width: 75%;
+  margin: auto;
+}
+
+#dif-form button{
+  width: 75%;
+}
+//------------------------------------------
+// game template styling -------------------
+#game-title {
+  text-align: center;
+}
+
+#answer-choices {
+  text-align: center;
+  box-sizing: border-box;
+}
+
+#answer-buttons {
+  width: 75%;
+}
+
+#score {
+  text-align: center;
+}
+
+#home-link {
+  text-align: center;
+  display: block;
+}
+
+#results-link {
+  text-align: center;
+  display: block;
+}
+
+#cat-dif {
   text-align: center;
 }

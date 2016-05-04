@@ -1,11 +1,11 @@
 <main>
-  {{questionCtrl.scoreData.category}} {{questionCtrl.scoreData.difficulty}}
-  <h1>Question: {{questionCtrl.curQuestion.question}}</h1>
-    <p ng-repeat="answer in questionCtrl.answers"><a href=""  ng-click="questionCtrl.getAnswer(answer)">{{answer}}</a></p>
-  <button ng-show="questionCtrl.showNextButton" ng-click="questionCtrl.showNextButton = false; questionCtrl.newQuestion()"name="button">next</button>
+  <h1 id="game-title">Question: {{questionCtrl.curQuestion.question}}</h1>
+    <p id="answer-choices" ng-repeat="answer in questionCtrl.answers"><a href=""  ng-click="questionCtrl.getAnswer(answer)"><button>{{answer}}</button></a></p>
+  <button id="answer-buttons" ng-show="questionCtrl.showNextButton" ng-click="questionCtrl.showNextButton = false; questionCtrl.newQuestion()"name="button">next</button>
   <footer>
-    <p>Score completed{{questionCtrl.count}}{{questionCtrl.scoreData.questionsCorrect}}</p>
-    <a href="#/home">Home</a>
-    <a href="#/results">Finished? Check results here!</a>
+    <p id="cat-dif">{{questionCtrl.currentPlace.category}} | {{questionCtrl.currentPlace.difficulty}}</p>
+    <p id="score">Score</p>
+    <a id="home-link" href="#/home">Home</a>
+    <a id="results-link" href="#/results">Finished? Check results here!</a>
   </footer>
 </main>
