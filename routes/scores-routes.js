@@ -19,7 +19,7 @@ module.exports = (router, models) => {
           if (err) {
             return res.send(err);
           }
-          res.status(200).json({message: 'Returned ScoreId', data: {scoreId: scores[0]._id}});
+          res.status(200).json({message: 'Returned ScoreId', data: {scoreId: scores[scores.length-1]._id}});
         });
       }
     })
