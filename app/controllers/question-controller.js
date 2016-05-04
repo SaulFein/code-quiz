@@ -24,6 +24,8 @@ module.exports = function(app) {
     // };
 
     vm.scoreData = {
+      userId: AuthService.getId(),
+      totalQuestions: vm.catQuestions.length,
       category: $window.localStorage.category ? JSON.parse($window.localStorage.category) : null,
       difficulty: $window.localStorage.difficulty ? JSON.parse($window.localStorage.difficulty) : null,
       questionsCorrect: $window.localStorage.correct ? $window.localStorage.correct : 0,
@@ -32,7 +34,7 @@ module.exports = function(app) {
     };
 
     vm.showNextButton;
-    vm.count = vm.scoreData.completedQuestions || $window.localStorage.count || 0;
+    vm.count = vm.scoreData.completedQuestions || 0;
     vm.curQuestion = vm.catQuestions[vm.count];
     vm.answers = vm.curQuestion ? vm.curQuestion.choices : null;
 
@@ -61,6 +63,7 @@ module.exports = function(app) {
     }
 
     vm.getQuestions = function(){
+      console.log(vm.count)
       if(!vm.allQuestions.length)
       $http.get(url)
         .then((res) => {
