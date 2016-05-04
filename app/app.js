@@ -43,4 +43,9 @@ app.config(['$routeProvider', function(router) {
       controllerAs: 'questionCtrl',
       templateUrl: 'templates/submit.html'
     })
+    .when('/results', {
+      controller: 'QuestionController',
+      controllerAs: 'questionCtrl',
+      templateUrl: 'templates/results.html'
+    })
 }])
