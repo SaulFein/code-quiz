@@ -1,68 +1,144 @@
 'use strict';
 module.exports = function(app) {
-  app.controller('QuestionController',['$http','$window','$location','AuthService', function($http, $window, $location, AuthService){
+  app.controller('QuestionController',['$http','$window','$location','AuthService','ScoreService', function($http, $window, $location, AuthService, ScoreService){
     let url = 'http://localhost:3000/api/questions';
-    this.allQuestions = $window.localStorage.allQuestions ? JSON.parse($window.localStorage.allQuestions) : [];
-    this.catQuestions = $window.localStorage.catQuestions ? JSON.parse($window.localStorage.catQuestions) : [];
-    this.currentPlace = $window.localStorage.currentPlace ? JSON.parse($window.localStorage.currentPlace) : {};
-    this.showNextButton;
-    this.count = $window.localStorage.count || 0 ; // show {{question[questionCtrl.count]}}
-    this.curQuestion = this.catQuestions[this.count];
-    this.answers = this.curQuestion ? this.curQuestion.choices : null;
+    let vm = this;
+    vm.allQuestions = $window.localStorage.allQuestions ? JSON.parse($window.localStorage.allQuestions) : [];
+    vm.catQuestions = $window.localStorage.catQuestions ? JSON.parse($window.localStorage.catQuestions) : [];
+    // vm.scoreData = $window.localStorage.scoreData ? JSON.parse($window.localStorage.scoreData) : {
+    //   category: null,
+    //   difficulty: null,
+    //   userId: AuthService.getId(),
+    //   totalQuestions: vm.catQuestions.length,
+    //   questionsCorrect: 0,
+    //   questionsWrong: this.totalQuestions-this.questionsCorrect,
+    // };
+    // vm.scoreData = {
+    //   category: $window.localStorage.category,
+    //   difficulty: $window.localStorage.difficulty,
+    //   userId: AuthService.getId(),
+    //   totalQuestions: vm.catQuestions.length,
+    //   questionsCorrect: 0,
+    //   questionsWrong: 0,
+    //   completedQuestions: 0,
+    // };
 
-    this.getQuestions = function(){
-      if(!this.allQuestions.length)
+    vm.scoreData = {
+      userId: AuthService.getId(),
+      totalQuestions: vm.catQuestions.length,
+      category: $window.localStorage.category ? JSON.parse($window.localStorage.category) : null,
+      difficulty: $window.localStorage.difficulty ? JSON.parse($window.localStorage.difficulty) : null,
+      questionsCorrect: $window.localStorage.correct ? $window.localStorage.correct : 0,
+      completedQuestions: $window.localStorage.count ? $window.localStorage.count : 0,
+      questionsWrong: $window.localStorage.wrong ? $window.localStorage.wrong : 0,
+    };
+
+    vm.showNextButton;
+    vm.count = vm.scoreData.completedQuestions || 0;
+    vm.curQuestion = vm.catQuestions[vm.count];
+    vm.answers = vm.curQuestion ? vm.curQuestion.choices : null;
+
+    vm.getPosition = function(){
+      $http.get('http://localhost:3000/api/users/' + AuthService.getId(), {
+        headers: {
+          token: AuthService.getToken()
+        }
+      })
+      .then((res)=>{
+        console.log(res.data.data.position)
+        if(res.data.data.position){
+          vm.scoreData = res.data.data.position;
+        }
+      })
+    }
+
+    vm.resume = function(){
+      console.log(vm.scoreData)
+      vm.getCategory(vm.scoreData.category)
+      vm.getDifficulty(vm.scoreData.difficulty)
+      $window.localStorage.count = vm.count = vm.scoreData.completedQuestions;
+      $window.localStorage.wrong = vm.scoreData.questionsWrong;
+      $window.localStorage.correct = vm.scoreData.questionsCorrect;
+      console.log('scoreDetta', vm.scoreData)
+    }
+
+    vm.getQuestions = function(){
+      console.log(vm.count)
+      if(!vm.allQuestions.length)
       $http.get(url)
         .then((res) => {
-          this.allQuestions = res.data.data;
-          console.log(this.allQuestions)
-          $window.localStorage.allQuestions = JSON.stringify(this.allQuestions)
+          vm.allQuestions = res.data.data;
+          console.log(vm.allQuestions)
+          $window.localStorage.allQuestions = JSON.stringify(vm.allQuestions)
         })
     }
 
-    this.getCategory = function(category){
-      if(!this.catQuestions.length)
-      if (category == 'All') return this.catQuestions = this.allQuestions;
-      this.catQuestions = this.allQuestions.filter((q) => {
+    vm.getCategory = function(category){
+      if(!vm.catQuestions.length)
+      if (category == 'All') return vm.catQuestions = vm.allQuestions;
+      vm.catQuestions = vm.allQuestions.filter((q) => {
         return q.category == category;
       })
-      $window.localStorage.catQuestions = JSON.stringify(this.catQuestions)
-      this.currentPlace['category'] = category;
-      $window.localStorage.currentPlace = JSON.stringify(this.currentPlace)
+      $window.localStorage.catQuestions = JSON.stringify(vm.catQuestions)
+      $window.localStorage.category = JSON.stringify(category)
     }
 
-    this.getDifficulty = function(difficulty){
-      this.catQuestions = this.catQuestions.filter((q) => {
+    vm.getDifficulty = function(difficulty){
+      vm.catQuestions = vm.catQuestions.filter((q) => {
         return q.difficulty == difficulty
       })
-      $window.localStorage.catQuestions = JSON.stringify(this.catQuestions)
-      this.currentPlace['difficulty'] = difficulty;
-      $window.localStorage.currentPlace = JSON.stringify(this.currentPlace)
+      $window.localStorage.catQuestions = JSON.stringify(vm.catQuestions)
+      $window.localStorage.difficulty = JSON.stringify(difficulty)
     }
 
-    this.newQuestion = function(){
-      if (this.count < this.catQuestions.length - 1) {
-        this.count += 1;
-        $window.localStorage.count = this.count;
+    vm.newQuestion = function(){
+      console.log(vm.curQuestion)
+      if (vm.count < vm.catQuestions.length - 1) {
+        vm.count ++;
+        $window.localStorage.count = vm.count;
+        vm.curQuestion = vm.catQuestions[vm.count];
+        vm.answers = vm.curQuestion.choices;
       } else {
         console.log('done')
-        this.count = null;
+        vm.updatePos({position:{}})
+        vm.count = $window.localStorage.count = 0;
+        vm.scoreData.completedQuestions = 0;
+        $window.localStorage.wrong = 0;
+        $window.localStorage.correct = 0;
         $location.path('/results')
       }
     }
 
-    this.getAnswer = function(answer){
-      if(answer == this.curQuestion.answer) {
-        console.log('correct')
+    vm.getAnswer = function(answer){
+      if(answer == vm.curQuestion.answer) {
+        console.log('correct');
+        vm.scoreData.questionsCorrect ++;
+        $window.localStorage.correct = vm.scoreData.questionsCorrect;
       } else {
-        console.log('in-corr-ect')
+        console.log('in-corr-ect');
+        vm.scoreData.questionsWrong ++;
+        $window.localStorage.wrong = vm.scoreData.questionsWrong;
       }
-      this.showNextButton = true;
+      vm.scoreData.completedQuestions ++;
+      console.log(vm.scoreData)
+      vm.showNextButton = true;
+      console.log('atUpdat', vm.scoreData)
+      vm.updatePos({position: vm.scoreData});
+      // ScoreService.updateScore(vm.scoreData) /// make data object from info
     }
 
-    this.submit = function(q){
-      q.choices = [q.choices[0],q.choices[1],q.choices[2],q.choices[3]]
-      console.log(q)
+    vm.updatePos = function(data){
+      $http.put('http://localhost:3000/api/users/' + AuthService.getId(), data, {
+        headers: {
+          token: AuthService.getToken()
+        }
+      }).then((res)=>{
+        console.log('updated position ', res.data.data.position)
+      })
+    }
+
+    vm.submit = function(q){
+      q.choices = [q.choices[0],q.choices[1],q.choices[2],q.choices[3]];
       $http.post(url, q, {
         headers: {
           token: AuthService.getToken()
@@ -73,8 +149,9 @@ module.exports = function(app) {
       })
     }
 
-    this.resetQuestions = function(){
-      this.count = this.$window.localStorage.count = 0;
+    vm.resetQuestions = function(){
+      vm.count = $window.localStorage.count = 0;
+
     }
 
   }])

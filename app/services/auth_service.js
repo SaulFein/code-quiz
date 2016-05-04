@@ -1,6 +1,7 @@
 module.exports = function(app) {
   app.factory('AuthService', ['$http', '$window',function($http, $window) {
     var token;
+    var userId;
     var url = 'http://localhost:3000'
     var auth = {
       createUser(user, cb) {
@@ -16,6 +17,9 @@ module.exports = function(app) {
       getToken() {
         return token || $window.localStorage.token;
       },
+      getId(){
+        return userId || $window.localStorage.user;
+      },
       signOut(cb) {
         token = null;
         $window.localStorage.token = null;
@@ -30,6 +34,7 @@ module.exports = function(app) {
           }
         }).then((res) => {
           token = $window.localStorage.token = res.data.token;
+          userId = $window.localStorage.user = res.data.data._id;
           console.log('This is token ', token)
           cb(null, res);
         }, (err) => {

@@ -1,5 +1,5 @@
 <section>
-  <form ng-submit="questionCtrl.submit(newQ)">
+  <form ng-submit="questionCtrl.submit(newQ); newQ = {}">
     Question: <input type="text" ng-model="newQ.question" value="">
     Answer: <input type="text" ng-model="newQ.answer" value="">
     Choice One: <input type="text" ng-model="newQ.choices[0]" value="">

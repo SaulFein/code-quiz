@@ -2,12 +2,15 @@
 
 module.exports = function(app) {
   app.factory('ScoreService', ['$http', 'AuthService', function($http, AuthService) {
-    const mainRoute = "http://localhost:3000/api";
-
+    const mainRoute = "http://localhost:3000/api/";
+    var scoreId;  
     var scoreService = {};
 
     scoreService.createScore = function(data) {
-      return $http.post(mainRoute + '/users/' + data.userId + '/scores', data);
+      return $http.post(mainRoute + '/users/' + data.userId + '/scores', data)
+      .then((res)=>{
+        console.log(res)
+      });
     };
 
     scoreService.getScores = function(userId) {
@@ -23,6 +26,8 @@ module.exports = function(app) {
         headers: {
           token: AuthService.getToken()
         }
+      }).then((res)=>{
+        console.log(res)
       });
     };
 
@@ -39,6 +44,8 @@ module.exports = function(app) {
         headers: {
           token: AuthService.getToken()
         }
+      }).then((res)=>{
+        console.log(res)
       });
     };
 
