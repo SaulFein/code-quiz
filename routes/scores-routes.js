@@ -2,6 +2,7 @@
 
 module.exports = (router, models) => {
   let Score = models.Score;
+  let User = models.User;
   let jwtAuth = require(__dirname + '/../lib/jwtAuth.js');
 
   router.route('/users/:user/scores')
@@ -29,6 +30,9 @@ module.exports = (router, models) => {
         if (err) {
           return res.json({message: 'Error Saving New Score', error: err});
         }
+        User.findByIdAndUpdate(req.params.user, {$push: {scores: score._id}}, {new: true}, (err, user) => {
+          console.log(user);
+        });
         res.status(200).json({message: 'Created Score', data: score});
       });
     });
