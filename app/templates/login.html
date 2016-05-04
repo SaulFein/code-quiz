@@ -2,11 +2,11 @@
   <h1 id="hometitle">Code Quiz</h1>
   <h4 id="tagline">Score a great job!</h4>
   <form id="login-form" ng-submit="userctrl.signIn(user)">
-    <input id="un-field" type="text" placeholder="username" value="username" ng-model="user.username"/>
+    <input id="un-field" type="text" placeholder="username" value="username" ng-model="user.username" required/>
 
     <p id="ip" ng-show="userctrl.ip">Invalid login!</p>
 
-    <input id="pw-field" type="text" placeholder="password" value="password" ng-model="user.password"/>
+    <input id="pw-field" type="text" placeholder="password" value="password" ng-model="user.password" required/>
 
     <button id="login-button" type="submit">Login</button>
   </form>
