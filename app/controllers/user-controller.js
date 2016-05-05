@@ -39,6 +39,12 @@ module.exports = function(app) {
       })
     }
 
+    vm.signOut = function(){
+      AuthService.signOut(() => {
+        $location.path('/login')
+      })
+    }
+
   }])
 }
 
