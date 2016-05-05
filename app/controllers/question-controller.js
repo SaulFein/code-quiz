@@ -234,8 +234,10 @@ module.exports = function(app){
       }
       vm.scoreData.completedQuestions ++;
       vm.showNextButton = true;
-      console.log(vm.scoreData)
-      console.log('atUpdat', vm.scoreData)
+      console.log('THIS HAPPENED')
+      console.log(vm.scoreData.completedQuestions)
+      // console.log(vm.scoreData)
+      // console.log('atUpdat', vm.scoreData)
       vm.updateScore(vm.scoreData);
     }
 
@@ -244,7 +246,7 @@ module.exports = function(app){
     }
 
     vm.newQuestion = function(){
-      if (vm.scoreData.completedQuestions < vm.allQuestions.length - 1) {
+      if (vm.scoreData.completedQuestions <= vm.allQuestions.length - 1) {
         // vm.scoreData.completedQuestions ++
         vm.curQuestion = vm.allQuestions[vm.scoreData.completedQuestions];
         vm.answers = vm.curQuestion.choices;
