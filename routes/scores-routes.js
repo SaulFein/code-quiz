@@ -31,7 +31,7 @@ module.exports = (router, models) => {
           return res.json({message: 'Error Saving New Score', error: err});
         }
         User.findByIdAndUpdate(req.params.user, {$push: {scores: score._id}}, {new: true}, (err, user) => {
-          console.log(user);
+          // console.log(user);
         });
         res.status(200).json({message: 'Created Score', data: score});
       });
