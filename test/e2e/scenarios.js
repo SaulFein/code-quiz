@@ -4,7 +4,7 @@ describe('code quiz homepage', function() {
   var signup = element(by.buttonText('SignUp'))
 
   beforeEach(function() {
-    browser.get('http://127.0.0.1:8080/#/home')
+    browser.get('http://127.0.0.1:8080/')
   })
 
   it('should have the correct title', function() {
