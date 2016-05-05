@@ -163,7 +163,6 @@ module.exports = function(app){
     let url = 'http://localhost:3000/api/questions';
     let vm = this;
     vm.allQuestions = [];
-    // vm.catQuestions = vm.allQuestions;
 
     vm.scoreData = {
       userId: AuthService.getId(),
@@ -173,7 +172,7 @@ module.exports = function(app){
       questionsCorrect: 0,
       completedQuestions:0,
       questionsWrong: 0,
-    };
+    }
 
     vm.showNextButton;
     vm.count = vm.scoreData.completedQuestions || 0;
@@ -202,45 +201,17 @@ module.exports = function(app){
     }
 
     vm.getQuestions = function(){
-      vm.category = $window.localStorage.cat
-      vm.difficulty = $window.localStorage.dif
-      console.log(vm.count)
-      console.log(vm.category)
-      console.log(vm.difficulty)
+      vm.category = vm.scoreData.category = $window.localStorage.cat;
+      vm.difficulty = vm.scoreData.difficulty = $window.localStorage.dif;
       if(!vm.allQuestions.length)
       $http.get(url + '?category=' + vm.category + '&difficulty=' + vm.difficulty)
         .then((res) => {
-          console.log(res)
           vm.allQuestions = res.data.data;
-          console.log(vm.curQuestion)
-          console.log(vm.scoreData.completedQuestions)
-          console.log(vm.allQuestions)
           vm.curQuestion = vm.allQuestions[vm.scoreData.completedQuestions];
           vm.answers = vm.curQuestion.choices
+          vm.createScore();
         })
     }
-
-    // vm.getCategory = function(category){
-    //   // if(!vm.catQuestions.length)
-    //   // if (category == 'All') return vm.catQuestions = vm.allQuestions;
-    //   vm.allQuestions = vm.allQuestions.filter((q) => {
-    //     return q.category === category;
-    //   })
-    //   console.log(vm.allQuestions)
-    //   vm.scoreData['category'] = category;
-    // }
-    //
-    // vm.getDifficulty = function(difficulty){
-    //   console.log(vm.allQuestions)
-    //   vm.allQuestions = vm.allQuestions.filter((q) => {
-    //     console.log('HERE');
-    //     console.log(q.difficulty, difficulty);
-    //     return q.difficulty === difficulty;
-    //   })
-    //   vm.scoreData['difficulty'] = difficulty;
-    //   console.log(vm.allQuestions)
-    //   vm.createScore()
-    // }
 
     vm.createScore = function(){
       ScoreService.createScore(vm.scoreData)
@@ -267,17 +238,11 @@ module.exports = function(app){
     vm.newQuestion = function(){
       console.log(vm.curQuestion)
       if (vm.count < vm.allQuestions.length - 1) {
-        // vm.count ++;
-        // $window.localStorage.count = vm.count;
         vm.scoreData.completedQuestions ++
         vm.curQuestion = vm.allQuestions[vm.scoreData.completedQuestions];
         vm.answers = vm.curQuestion.choices;
       } else {
         vm.reset();
-        // vm.count = $window.localStorage.count = 0;
-        // vm.scoreData.completedQuestions = 0;
-        // $window.localStorage.wrong = 0;
-        // $window.localStorage.correct = 0;
       }
     }
 

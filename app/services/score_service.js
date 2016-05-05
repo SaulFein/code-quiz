@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.factory('ScoreService', ['$http', 'AuthService', function($http, AuthService) {
+  app.factory('ScoreService', ['$http', 'AuthService','$window', function($http, AuthService, $window) {
     const mainRoute = "http://localhost:3000/api/";
     var scoreId;
     var scoreService = {};
@@ -9,7 +9,7 @@ module.exports = function(app) {
     scoreService.createScore = function(data) {
       return $http.post(mainRoute + '/users/' + data.userId + '/scores', data)
       .then((res)=>{
-        scoreId = res.data.data._id;
+        scoreId = $window.localStorage.scoreId = res.data.data._id;
         console.log(res);
       });
     };
@@ -43,6 +43,7 @@ module.exports = function(app) {
     }
 
     scoreService.updateScore = function(data, scoreId) {
+      console.log(scoreId)
       return $http.put(mainRoute + '/users/' + data.userId + '/scores/' + scoreId, data, {
         headers: {
           token: AuthService.getToken()
