@@ -1,6 +1,6 @@
 html {
   height: 100%;
-  width: 85%;
+  width: 90%;
   margin: auto; }
 
 body {
@@ -17,11 +17,13 @@ body {
 
 #hometitle {
   color: red;
-  font-size: 6em;
-  text-align: center; }
+  font-size: 5em;
+  text-align: center;
+  font-family: 'Source Code Pro'; }
 
 #tagline {
-  font-size: 4em;
+  font-family: 'Source Code Pro';
+  font-size: 3em;
   text-align: center; }
 
 #sign-in-form {
@@ -34,23 +36,27 @@ body {
   text-align: center;
   width: 75%;
   height: 100%;
-  font-size: 4em;
+  font-family: 'Source Code Pro';
+  font-size: 3em;
   box-sizing: border-box; }
 
 #pw-field {
-  font-size: 4em;
+  font-size: 3em;
+  font-family: 'Source Code Pro';
   text-align: center;
   width: 75%;
   height: 100%;
   box-sizing: border-box; }
 
 #signup-button {
+  font-family: 'Source Code Pro';
   width: 75%;
   height: 2em;
   font-size: 3em;
   box-sizing: border-box; }
 
 #uae {
+  font-family: 'Source Code Pro';
   color: red;
   width: 75%;
   margin: auto; }
@@ -77,12 +83,14 @@ body {
   box-sizing: border-box; }
 
 #login-button {
+  font-family: 'Source Code Pro';
   width: 75%;
   height: 2em;
   font-size: 3em;
   box-sizing: border-box; }
 
 #ip {
+  font-family: 'Source Code Pro';
   color: red;
   width: 75%;
   margin: auto; }
@@ -104,7 +112,7 @@ body {
   width: 100%; }
 
 #cat-form button {
-  width: 75%;
+  width: 100%;
   height: 2em;
   font-size: 3em;
   box-sizing: border-box; }
