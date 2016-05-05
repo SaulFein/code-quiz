@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.factory('ScoreService', ['$http', 'AuthService', function($http, AuthService) {
+  app.factory('ScoreService', ['$http', 'AuthService','$window', function($http, AuthService, $window) {
     const mainRoute = "http://localhost:3000/api";
     let scoreId;
     let scoreService = {};
@@ -9,7 +9,8 @@ module.exports = function(app) {
     scoreService.createScore = function(data) {
       return $http.post(mainRoute + '/users/' + data.userId + '/scores', data)
       .then((res)=>{
-        console.log(res)
+        scoreId = $window.localStorage.scoreId = res.data.data._id;
+        console.log(res);
       });
     };
 
@@ -21,13 +22,15 @@ module.exports = function(app) {
       })
     };
 
-    scoreService.getScore = function(data) {
+    scoreService.getScore = function(data, cb) {
+      cb || function(){};
       return $http.get(mainRoute + '/users/' + data.userId + '/scores/' + data.scoreId, {
         headers: {
           token: AuthService.getToken()
         }
       }).then((res)=>{
         console.log(res)
+        cb(null, res)
       });
     };
 
@@ -39,8 +42,9 @@ module.exports = function(app) {
       });
     }
 
-    scoreService.updateScore = function(data) {
-      return $http.put(mainRoute + '/users/' + data.userId + '/scores/' + data.scoreId, data, {
+    scoreService.updateScore = function(data, scoreId) {
+      console.log(scoreId)
+      return $http.put(mainRoute + '/users/' + data.userId + '/scores/' + scoreId, data, {
         headers: {
           token: AuthService.getToken()
         }
@@ -56,6 +60,10 @@ module.exports = function(app) {
         }
       });
     };
+
+    scoreService.getId = function(){
+      return scoreId;
+    }
 
     return scoreService;
   }]);

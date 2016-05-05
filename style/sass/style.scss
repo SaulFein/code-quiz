@@ -1,6 +1,7 @@
 html {
   height: 100%;
-  width: 100%;
+  width: 85%;
+  margin: auto;
 }
 
 body {
@@ -14,7 +15,6 @@ body {
 }
 // home template styling ---------------
 #home-main {
-  height: 60%;
   width: 100%;
 }
 
@@ -22,7 +22,7 @@ body {
   color: red;
   font-size: 6em;
   text-align: center;
-  height: 20%;
+  // height: 20%;
 }
 
 #tagline {
@@ -31,7 +31,6 @@ body {
 }
 
 #sign-in-form {
-  // font-size: 3em;
   text-align: center;
 }
 
@@ -99,6 +98,8 @@ body {
 
 #login-button{
   width: 75%;
+  height: 2em;
+  font-size: 3em;
   box-sizing: border-box;
 }
 
@@ -109,49 +110,109 @@ body {
 }
 //------------------------------------------
 // category template styling ---------------
+#cat-main {
+  width: 100%;
+}
+
 #cat-title {
+  color: red;
   text-align: center;
+  font-size: 6em;
 }
 
 #cat-form {
   text-align: center;
   list-style-type: none;
-  // width: 75%;
-  margin: auto;
+  width: 100%;
+  // margin: auto;
+}
+
+#cat-form li{
+  width: 100%;
 }
 
 #cat-form button{
   width: 75%;
+  height: 2em;
+  font-size: 3em;
+  box-sizing: border-box;
 }
 //------------------------------------------
 // difficulty template styling -------------
+#dif-main {
+  width: 100%;
+}
+
 #dif-title {
+  color: red;
   text-align: center;
+  font-size: 6em;
 }
 
 #dif-form {
   text-align: center;
   list-style-type: none;
-  // width: 75%;
-  margin: auto;
+  width: 100%;
+}
+
+#cat-form li{
+  width: 100%;
 }
 
 #dif-form button{
   width: 75%;
+  height: 2em;
+  font-size: 3em;
+  box-sizing: border-box;
 }
 //------------------------------------------
 // game template styling -------------------
+#game-main {
+  width: 100%;
+}
+
 #game-title {
+  color: red;
   text-align: center;
+  font-size: 4vw;
 }
 
 #answer-choices {
+  padding: 1%;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  color: #555;
   text-align: center;
   box-sizing: border-box;
+  font-size: 2vw;
+  width: 100%;
+  &:hover {
+    border: 1px solid yellow;
+  };
 }
 
-#answer-buttons {
-  width: 75%;
+#next-wrap {
+  text-align: center;
+}
+
+#next-button {
+  padding: 1%;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  color: #555;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 2vw;
+  width: 100%;
+  &:hover {
+    border: 1px solid blue;
+  };
 }
 
 #score {
@@ -170,4 +231,32 @@ body {
 
 #cat-dif {
   text-align: center;
+}
+//------------------------------------------
+// results template styling -------------------
+#results-main {
+  width: 100%;
+}
+
+#results-title {
+  color: red;
+  text-align: center;
+  font-size: 6em;
+}
+
+#results-score {
+  text-align: center;
+}
+
+#results-footer {
+  text-align: center;
+}
+//------------------------------------------
+// submit template styling -----------------
+#submit-form input{
+  width: 100%;
+}
+
+#submit-form select{
+  width: 100%;
 }
