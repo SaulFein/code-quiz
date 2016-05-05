@@ -1,143 +1,63 @@
-html {
-  height: 100%;
-  width: 90%;
-  margin: auto; }
-
 body {
   height: 100%;
-  width: 100%; }
+  width: 90%;
+  margin: 5% auto;
+  text-align: center;
+  font-family: "Source Code Pro", Courier, monospace;
+  background-color: #111;
+  color: #868686; }
 
-#index-main {
-  display: flex;
-  align-items: center;
-  height: 100%; }
-
-#home-main {
-  width: 100%; }
-
-#hometitle {
-  color: red;
+h1, h2 {
+  margin: 0;
+  color: #49a6d2;
   font-size: 5em;
-  text-align: center;
-  font-family: 'Source Code Pro'; }
-
-#tagline {
-  font-family: 'Source Code Pro';
-  font-size: 3em;
   text-align: center; }
 
-#sign-in-form {
-  text-align: center; }
+h2 {
+  font-size: 4em; }
 
-#login-link {
-  text-align: center; }
+h4 {
+  font-size: 2.7em;
+  color: #a6e22e; }
 
-#un-field {
-  text-align: center;
+input[type="text"],
+input[type="password"] {
   width: 75%;
   height: 100%;
-  font-family: 'Source Code Pro';
-  font-size: 3em;
-  box-sizing: border-box; }
-
-#pw-field {
-  font-size: 3em;
-  font-family: 'Source Code Pro';
+  border: 1px solid #a2a199;
+  box-sizing: border-box;
   text-align: center;
-  width: 75%;
-  height: 100%;
-  box-sizing: border-box; }
+  font-size: 3em;
+  font-family: "Source Code Pro", Courier, monospace;
+  background-color: #3e3d32;
+  color: #a2a199; }
 
-#signup-button {
-  font-family: 'Source Code Pro';
+::-moz-placeholder {
+  color: #fff; }
+
+::-webkit-input-placeholder {
+  color: #fff; }
+
+::-ms-input-placeholder {
+  color: #fff; }
+
+button {
   width: 75%;
   height: 2em;
+  box-sizing: border-box;
+  border: 0;
+  background-color: #a6e22e;
+  color: #111;
   font-size: 3em;
-  box-sizing: border-box; }
+  font-family: "Source Code Pro", Courier, monospace; }
 
-#uae {
-  font-family: 'Source Code Pro';
-  color: red;
-  width: 75%;
-  margin: auto; }
+.error-message {
+  color: #f92672;
+  clear: both; }
 
-#hometitle {
-  color: red;
-  text-align: center; }
-
-#tagline {
-  text-align: center; }
-
-#login-form {
-  text-align: center; }
-
-#signup-link {
-  text-align: center; }
-
-#un-field {
-  width: 75%;
-  box-sizing: border-box; }
-
-#pw-field {
-  width: 75%;
-  box-sizing: border-box; }
-
-#login-button {
-  font-family: 'Source Code Pro';
-  width: 75%;
-  height: 2em;
-  font-size: 3em;
-  box-sizing: border-box; }
-
-#ip {
-  font-family: 'Source Code Pro';
-  color: red;
-  width: 75%;
-  margin: auto; }
-
-#cat-main {
-  width: 100%; }
-
-#cat-title {
-  color: red;
-  text-align: center;
-  font-size: 6em; }
-
-#cat-form {
-  text-align: center;
-  list-style-type: none;
-  width: 100%; }
-
-#cat-form li {
-  width: 100%; }
-
-#cat-form button {
-  width: 100%;
-  height: 2em;
-  font-size: 3em;
-  box-sizing: border-box; }
-
-#dif-main {
-  width: 100%; }
-
-#dif-title {
-  color: red;
-  text-align: center;
-  font-size: 6em; }
-
-#dif-form {
-  text-align: center;
-  list-style-type: none;
-  width: 100%; }
-
-#cat-form li {
-  width: 100%; }
-
-#dif-form button {
-  width: 75%;
-  height: 2em;
-  font-size: 3em;
-  box-sizing: border-box; }
+.select-options {
+  margin-top: 1em;
+  list-style-type: none; }
 
 #game-main {
   width: 100%; }
