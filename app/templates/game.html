@@ -6,7 +6,7 @@
     <button id="next-button" ng-show="questionCtrl.showNextButton" ng-click="questionCtrl.showNextButton = false; questionCtrl.newQuestion()"name="button">next</button>
   </div>
   <footer>
-    <p id="cat-dif">{{questionCtrl.currentPlace.category}} | {{questionCtrl.currentPlace.difficulty}}</p>
+    <p id="cat-dif">{{questionCtrl.scoreData.questionsCorrect}} | {{questionCtrl.scoreData.completedQuestions}}</p>
     <p id="score">Score</p>
     <a id="home-link" href="#/home">Home</a>
     <a id="results-link" href="#/results">Finished? Check results here!</a>

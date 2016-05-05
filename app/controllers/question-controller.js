@@ -160,6 +160,7 @@
 'use stict';
 module.exports = function(app){
   app.controller('QuestionController',['$http','$window','$location','AuthService','ScoreService', function($http, $window, $location, AuthService, ScoreService){
+
     let url = 'http://localhost:3000/api/questions';
     let vm = this;
     vm.allQuestions = [];
@@ -225,7 +226,6 @@ module.exports = function(app){
       if(answer == vm.curQuestion.answer) {
         vm.scoreData.questionsCorrect ++;
       } else {
-        console.log('in-corr-ect');
         vm.scoreData.questionsWrong ++;
       }
       vm.scoreData.completedQuestions ++;
@@ -240,9 +240,8 @@ module.exports = function(app){
     }
 
     vm.newQuestion = function(){
-      console.log(vm.curQuestion)
-      if (vm.count < vm.allQuestions.length - 1) {
-        vm.scoreData.completedQuestions ++
+      if (vm.scoreData.completedQuestions < vm.allQuestions.length - 1) {
+        // vm.scoreData.completedQuestions ++
         vm.curQuestion = vm.allQuestions[vm.scoreData.completedQuestions];
         vm.answers = vm.curQuestion.choices;
       } else {
