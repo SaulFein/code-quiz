@@ -2,7 +2,11 @@
 
 module.exports = (mongoose, models) => {
   let QuestionSchema = mongoose.Schema({
-    question: String,
+    question: {
+      type: String,
+      required: true,
+      unique: true
+    },
     choices: Array,
     answer: String,
     category: String,
