@@ -7,6 +7,11 @@ module.exports = function(app){
     vm.correct = 0;
     vm.allQuestions = [];
 
+    vm.selected = 5;
+    vm.itemClicked = function($index) {
+      vm.selected = $index;
+    }
+
     vm.scoreData = {
       userId: $window.localStorage.user,
       totalQuestions: vm.allQuestions.length,
@@ -96,6 +101,8 @@ module.exports = function(app){
     }
 
     vm.newQuestion = function(){
+      vm.correct = 0;
+      vm.selected = 5;
       if (vm.scoreData.completedQuestions <= vm.allQuestions.length - 1) {
         vm.curQuestion = vm.allQuestions[vm.scoreData.completedQuestions];
         vm.answers = vm.curQuestion.choices;
