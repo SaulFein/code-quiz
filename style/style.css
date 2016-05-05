@@ -73,11 +73,11 @@ button,
   color: #111; }
 
 #game-title {
-  font-size: 4vw; }
+  font-size: 6vw; }
 
 .answer-choices {
   margin-top: 1em;
-  padding: 1%;
+  padding: 6%;
   font-weight: 600;
   line-height: 38px;
   letter-spacing: .1rem;
@@ -93,6 +93,22 @@ button,
     background-color: #FFFF00;
     color: #111; }
 
+.cat-choices, .dif-choices {
+  padding: 6%;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  border-radius: 4px;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 2em;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  background-color: #a6e22e;
+  color: #111; }
+  .cat-choices:hover, .dif-choices:hover {
+    background-color: #FFFF00; }
+
 #next-wrap {
   text-align: center; }
 
@@ -106,7 +122,8 @@ button,
   color: #555;
   text-align: center;
   box-sizing: border-box;
-  font-size: 2vw;
+  font-size: 1em;
+  height: 3.25em;
   width: 100%; }
   #next-button:hover {
     border: 1px solid blue; }
@@ -124,6 +141,18 @@ button,
 
 #cat-dif {
   text-align: center; }
+
+.rightAns {
+  background-color: #bbff33;
+  color: black; }
+  .rightAns:hover {
+    background-color: #bbff33; }
+
+.wrongAns {
+  background-color: #F22613;
+  color: black; }
+  .wrongAns:hover {
+    background-color: #F22613; }
 
 #results-main {
   width: 100%; }
