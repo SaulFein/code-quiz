@@ -143,11 +143,13 @@ body {
   width: 100%; }
 
 #game-title {
+  font-family: 'Source Code Pro';
   color: red;
   text-align: center;
   font-size: 4vw; }
 
 #answer-choices {
+  font-family: 'Source Code Pro';
   padding: 1%;
   font-weight: 600;
   line-height: 38px;
@@ -158,7 +160,8 @@ body {
   text-align: center;
   box-sizing: border-box;
   font-size: 2vw;
-  width: 100%; }
+  width: 100%;
+  margin-bottom: 1.5rem; }
   #answer-choices:hover {
     border: 1px solid yellow; }
 
