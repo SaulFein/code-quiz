@@ -1,8 +1,8 @@
 
-<main id="game-main" ng-init="questionCtrl.getQuestions()">
+<main id="game-main">
   <h1 id="game-title">Question: {{questionCtrl.curQuestion.question}}</h1>
   <!-- <div id="answer-cont"> -->
-  <div id="answer-choices" ng-repeat="answer in questionCtrl.answers" ng-click="questionCtrl.getAnswer(answer)">{{answer}}</div>
+  <div id="answer-choices" ng-class="{rightAns: questionCtrl.correct == 1, wrongAns: questionCtrl.correct == 2}" ng-repeat="answer in questionCtrl.answers" ng-click="questionCtrl.getAnswer(answer)">{{answer}}</div>
   <div id="next-button" ng-show="questionCtrl.showNextButton" ng-click="questionCtrl.showNextButton = false; questionCtrl.newQuestion()"name="button">next</div>
   <!-- </div> -->
   <footer>

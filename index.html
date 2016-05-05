@@ -8,8 +8,10 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro|Roboto+Mono|Droid+Sans+Mono|Ubuntu+Mono' rel='stylesheet' type='text/css'>
 </head>
   <body ng-app="app" ng-controller="UserController as userctrl">
+    <section ng-controller="QuestionController as questionCtrl">
+      <main id="index-main" ng-view>Processing</main>
 
-    <main id="index-main" ng-view>Processing</main>
+    </section>
 
 
   <!-- <script src="./node_modules/angular/angular.js"></script> -->

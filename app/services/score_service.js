@@ -62,7 +62,7 @@ module.exports = function(app) {
     };
 
     scoreService.getId = function(){
-      return scoreId;
+      return $window.localStorage.scoreId || scoreId;
     }
 
     return scoreService;
