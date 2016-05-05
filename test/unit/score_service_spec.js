@@ -16,6 +16,7 @@ describe('score service tests', () => {
     expect(typeof ScoreService.createScore).toBe('function');
     expect(typeof ScoreService.getScores).toBe('function');
     expect(typeof ScoreService.getScore).toBe('function');
+    expect(typeof ScoreService.getScoreId).toBe('function');
     expect(typeof ScoreService.updateScore).toBe('function');
     expect(typeof ScoreService.resetScore).toBe('function');
   });

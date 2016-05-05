@@ -128,7 +128,21 @@ describe('test /users/:user/scores routes', () => {
         });
     });
 
-  it('should respond to GET /users/:user/scores/:score', (done) => {
+    it('should respond to GET /users/:user/scores with scoreId', (done) => {
+      request('localhost:' + config.PORT)
+        .get('/api/users/' + userId + '/scores?category=JavaScript&difficulty=Easy')
+        .set('token', userToken)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res).to.have.status(200);
+          expect(res).to.be.json;
+          expect(res.body.data).to.have.property('scoreId');
+          expect(res.body.data.scoreId).to.not.equal(null);
+          done();
+        });
+    });
+
+    it('should respond to GET /users/:user/scores/:score', (done) => {
       request('localhost:' + config.PORT)
         .get('/api/users/' + userId + '/scores/' + scoreId)
         .set('token', userToken)

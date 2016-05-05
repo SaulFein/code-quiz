@@ -1,9 +1,10 @@
 module.exports = function(app) {
-  app.controller('UserController',['AuthService', 'ErrorService', '$http', '$location',
-  function(AuthService, ErrorService, $http, $location){
+  app.controller('UserController',['AuthService', 'ScoreService', 'ErrorService', '$http', '$location',
+  function(AuthService, ScoreService, ErrorService, $http, $location){
     let url = 'http://localhost:3000'
     const vm = this;
     vm.user = [];
+    vm.scores = [];
     vm.user = ['user'];
     vm.uae = false; //uae = user already exists
     vm.ip = false; //ip = invalid password
@@ -36,6 +37,22 @@ module.exports = function(app) {
           vm.error = ErrorService(null);
           $location.path('/category');
         }
+      })
+    }
+
+    vm.getScores = function() {
+      let userId = AuthService.getId();
+      ScoreService.getScores(userId)
+        .then(function(res) {
+          vm.scores = res.data.data;
+        }, function(err) {
+          console.log(err);
+        });
+    }
+
+    vm.signOut = function(){
+      AuthService.signOut(() => {
+        $location.path('/login')
       })
     }
 

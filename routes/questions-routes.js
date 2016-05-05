@@ -7,7 +7,7 @@ module.exports = (router, models) => {
   router.route('/questions')
     .get((req, res) => {
       let params;
-      if (req.query.category = 'All') {
+      if (req.query.category == 'All') {
         params = {difficulty:req.query.difficulty}
       } else {
         params = {category: req.query.category, difficulty:req.query.difficulty}
