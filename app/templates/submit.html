@@ -1,11 +1,18 @@
 <section>
-  <form ng-submit="questionCtrl.submit(newQ); newQ = {}">
+  <h1>Question Submit form</h1>
+  <form id="submit-form" ng-submit="questionCtrl.submit(newQ); newQ = {}">
     Question: <input type="text" ng-model="newQ.question" value="">
+  </br>
     Answer: <input type="text" ng-model="newQ.answer" value="">
+  </br>
     Choice One: <input type="text" ng-model="newQ.choices[0]" value="">
+  </br>
     Choice Two: <input type="text" ng-model="newQ.choices[1]" value="">
+  </br>
     Choice Three: <input type="text" ng-model="newQ.choices[2]" value="">
+  </br>
     Choice Four: <input type="text" ng-model="newQ.choices[3]" value="">
+  </br>
     Difficulty: <select ng-model="newQ.difficulty">
       <option value="Easy">Easy</option>
       <option value="Medium">Medium</option>

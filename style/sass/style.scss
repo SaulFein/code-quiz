@@ -14,7 +14,6 @@ body {
 }
 // home template styling ---------------
 #home-main {
-  height: 60%;
   width: 100%;
 }
 
@@ -22,7 +21,7 @@ body {
   color: red;
   font-size: 6em;
   text-align: center;
-  height: 20%;
+  // height: 20%;
 }
 
 #tagline {
@@ -31,7 +30,6 @@ body {
 }
 
 #sign-in-form {
-  // font-size: 3em;
   text-align: center;
 }
 
@@ -99,6 +97,8 @@ body {
 
 #login-button{
   width: 75%;
+  height: 2em;
+  font-size: 3em;
   box-sizing: border-box;
 }
 
@@ -109,49 +109,95 @@ body {
 }
 //------------------------------------------
 // category template styling ---------------
+#cat-main {
+  width: 100%;
+}
+
 #cat-title {
+  color: red;
   text-align: center;
+  font-size: 6em;
 }
 
 #cat-form {
   text-align: center;
   list-style-type: none;
-  // width: 75%;
-  margin: auto;
+  width: 100%;
+  // margin: auto;
+}
+
+#cat-form li{
+  width: 100%;
 }
 
 #cat-form button{
   width: 75%;
+  height: 2em;
+  font-size: 3em;
+  box-sizing: border-box;
 }
 //------------------------------------------
 // difficulty template styling -------------
+#dif-main {
+  width: 100%;
+}
+
 #dif-title {
+  color: red;
   text-align: center;
+  font-size: 6em;
 }
 
 #dif-form {
   text-align: center;
   list-style-type: none;
-  // width: 75%;
-  margin: auto;
+  width: 100%;
+}
+
+#cat-form li{
+  width: 100%;
 }
 
 #dif-form button{
   width: 75%;
+  height: 2em;
+  font-size: 3em;
+  box-sizing: border-box;
 }
 //------------------------------------------
 // game template styling -------------------
+#game-main {
+  width: 100%;
+}
+
 #game-title {
+  color: red;
   text-align: center;
+  font-size: 6em;
 }
 
 #answer-choices {
   text-align: center;
   box-sizing: border-box;
 }
-
-#answer-buttons {
+#answer-choices button {
   width: 75%;
+  height: 2em;
+  font-size: 3em;
+  box-sizing: border-box;
+}
+
+#next-wrap {
+  text-align: center;
+}
+
+#next-button {
+  text-align: center;
+  display: inline-block;
+  width: 75%;
+  height: 2em;
+  font-size: 3em;
+  box-sizing: border-box;
 }
 
 #score {
@@ -170,4 +216,32 @@ body {
 
 #cat-dif {
   text-align: center;
+}
+//------------------------------------------
+// game template styling -------------------
+#results-main {
+  width: 100%;
+}
+
+#results-title {
+  color: red;
+  text-align: center;
+  font-size: 6em;
+}
+
+#results-score {
+  text-align: center;
+}
+
+#results-footer {
+  text-align: center;
+}
+//------------------------------------------
+// submit template styling -----------------
+#submit-form input{
+  width: 100%;
+}
+
+#submit-form select{
+  width: 100%;
 }

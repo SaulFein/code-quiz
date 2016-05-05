@@ -12,14 +12,12 @@ body {
   height: 100%; }
 
 #home-main {
-  height: 60%;
   width: 100%; }
 
 #hometitle {
   color: red;
   font-size: 6em;
-  text-align: center;
-  height: 20%; }
+  text-align: center; }
 
 #tagline {
   font-size: 4em;
@@ -79,6 +77,8 @@ body {
 
 #login-button {
   width: 75%;
+  height: 2em;
+  font-size: 3em;
   box-sizing: border-box; }
 
 #ip {
@@ -86,37 +86,78 @@ body {
   width: 75%;
   margin: auto; }
 
+#cat-main {
+  width: 100%; }
+
 #cat-title {
-  text-align: center; }
+  color: red;
+  text-align: center;
+  font-size: 6em; }
 
 #cat-form {
   text-align: center;
   list-style-type: none;
-  margin: auto; }
+  width: 100%; }
+
+#cat-form li {
+  width: 100%; }
 
 #cat-form button {
-  width: 75%; }
+  width: 75%;
+  height: 2em;
+  font-size: 3em;
+  box-sizing: border-box; }
+
+#dif-main {
+  width: 100%; }
 
 #dif-title {
-  text-align: center; }
+  color: red;
+  text-align: center;
+  font-size: 6em; }
 
 #dif-form {
   text-align: center;
   list-style-type: none;
-  margin: auto; }
+  width: 100%; }
+
+#cat-form li {
+  width: 100%; }
 
 #dif-form button {
-  width: 75%; }
+  width: 75%;
+  height: 2em;
+  font-size: 3em;
+  box-sizing: border-box; }
+
+#game-main {
+  width: 100%; }
 
 #game-title {
-  text-align: center; }
+  color: red;
+  text-align: center;
+  font-size: 6em; }
 
 #answer-choices {
   text-align: center;
   box-sizing: border-box; }
 
-#answer-buttons {
-  width: 75%; }
+#answer-choices button {
+  width: 75%;
+  height: 2em;
+  font-size: 3em;
+  box-sizing: border-box; }
+
+#next-wrap {
+  text-align: center; }
+
+#next-button {
+  text-align: center;
+  display: inline-block;
+  width: 75%;
+  height: 2em;
+  font-size: 3em;
+  box-sizing: border-box; }
 
 #score {
   text-align: center; }
@@ -131,3 +172,23 @@ body {
 
 #cat-dif {
   text-align: center; }
+
+#results-main {
+  width: 100%; }
+
+#results-title {
+  color: red;
+  text-align: center;
+  font-size: 6em; }
+
+#results-score {
+  text-align: center; }
+
+#results-footer {
+  text-align: center; }
+
+#submit-form input {
+  width: 100%; }
+
+#submit-form select {
+  width: 100%; }
