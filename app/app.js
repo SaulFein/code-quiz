@@ -14,13 +14,13 @@ require('./controllers/user-controller.js')(app)
 app.config(['$routeProvider', function(router) {
   router
     .when('/home', {
-      controller: 'UserController',
-      controllerAs: 'userctrl',
+      // controller: 'UserController',
+      // controllerAs: 'userctrl',
       templateUrl: 'templates/home.html'
     })
     .when('/login', {
-      controller: 'UserController',
-      controllerAs: 'userctrl',
+      // controller: 'UserController',
+      // controllerAs: 'userctrl',
       templateUrl: 'templates/login.html'
     })
     .when('/category', {
