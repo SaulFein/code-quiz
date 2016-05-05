@@ -81,7 +81,8 @@ button {
   text-align: center;
   box-sizing: border-box;
   font-size: 2vw;
-  width: 100%; }
+  width: 100%;
+  margin-bottom: 1.5rem; }
   #answer-choices:hover {
     border: 1px solid yellow; }
 
