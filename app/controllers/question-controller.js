@@ -182,9 +182,13 @@ module.exports = function(app){
     vm.difficulty = '';
     vm.category = '';
 
-    // vm.getPosition = function(data){
+    // vm.getPosition = function(data){    ///not hooked up to anything should work though?
     //   ScoreService.getScore(data, (err, res) => {
     //     console.log(res)
+    //     vm.scoreData = res.data.data;
+    //     vm.getCategory(vm.scoreData.category)
+    //     vm.getDifficulty(vm.scoreData.difficulty)
+    //     vm.getQuestions()
     //   })
     // }
 
