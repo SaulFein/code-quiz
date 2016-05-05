@@ -1,14 +1,13 @@
-<main>
-  <h1 id="hometitle">Code Quiz</h1>
-  <h4 id="tagline">Score a great job!</h4>
+<section>
+  <h1>Code Quiz</h1>
+  <h4>Score a great job!</h4>
+  <p class="error-message" ng-show="userctrl.ip">Invalid login!</p>
   <form id="login-form" ng-submit="userctrl.signIn(user)">
-    <input id="un-field" type="text" placeholder="username" value="username" ng-model="user.username" required/>
+    <input type="text" placeholder="username" value="username" ng-model="user.username" required/>
 
-    <p id="ip" ng-show="userctrl.ip">Invalid login!</p>
-
-    <input id="pw-field" type="password" placeholder="password" value="password" ng-model="user.password" required/>
+    <input type="password" placeholder="password" value="password" ng-model="user.password" required/>
 
     <button id="login-button" type="submit">Login</button>
   </form>
   <p id="signup-link">Dont have an account yet? <a href="#/">Sign Up</a> here!</p>
-</main>
+</section>

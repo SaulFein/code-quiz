@@ -1,207 +1,148 @@
-html {
-  height: 100%;
-  width: 90%;
-  margin: auto;
-}
+//-------------------------
+// Variables
+//-------------------------
+
+$font-family: 'Source Code Pro', Courier, monospace;
+$black: #111;
+$white: #fff;
+$blue: #49a6d2;
+$green: #a6e22e;
+$bright-green: #bbff33;
+$gray: #868686;
+$light-gray: #a2a199;
+$green-gray: #3e3d32;
+$red: #f92672;
+$purple: #ae81ff;
+$yellow: #FFFF00;
+
+//-------------------------
+// Base
+//-------------------------
 
 body {
   height: 100%;
-  width: 100%;
-}
-#index-main {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-// home template styling ---------------
-#home-main {
-  width: 100%;
+  width: 90%;
+  margin: 5% auto;
+  text-align: center;
+  font-family: $font-family;
+  background-color: $black;
+  color: $gray;
 }
 
-#hometitle {
-  color: red;
+#main {
+  max-width: 650px;
+  margin: 5% auto;
+}
+
+//-------------------------
+// Headings
+//-------------------------
+
+h1 {
+  margin: 0;
+  color: $blue;
   font-size: 5em;
   text-align: center;
-  font-family: 'Source Code Pro';
   // height: 20%;
 }
 
-#tagline {
-  font-family: 'Source Code Pro';
-  font-size: 3em;
-  text-align: center;
+h2 {
+  @extend h1;
+  font-size: 4em;
 }
 
-#sign-in-form {
-  text-align: center;
+h4 {
+  font-size: 2.7em;
+  color: $green;
 }
 
-#login-link {
-  text-align: center;
-}
+//-------------------------
+// Form
+//-------------------------
 
-#un-field{
-  text-align: center;
+input[type="text"],
+input[type="password"] {
   width: 75%;
   height: 100%;
-  font-family: 'Source Code Pro';
-  font-size: 3em;
+  border: 1px solid $light-gray;
   box-sizing: border-box;
-}
-
-#pw-field{
-  font-size: 3em;
-  font-family: 'Source Code Pro';
   text-align: center;
-  width: 75%;
-  height: 100%;
-  box-sizing: border-box;
+  font-size: 3em;
+  font-family: $font-family;
+  background-color: $green-gray;
+  color: $light-gray;
 }
 
-#signup-button{
-  font-family: 'Source Code Pro';
+::-moz-placeholder {
+  color: $white;
+};
+
+::-webkit-input-placeholder {
+  color: $white;
+}
+
+::-ms-input-placeholder {
+  color: $white;
+}
+
+button,
+#next-button {
   width: 75%;
   height: 2em;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
   font-size: 3em;
-  box-sizing: border-box;
+  font-family: $font-family;
+  background-color: $green;
+  color: $black;
+  &:hover {
+    color: $black;
+  };
 }
 
-#uae {
-  font-family: 'Source Code Pro';
-  color: red;
-  width: 75%;
-  margin: auto;
+.error-message {
+  color: $red;
+  clear: both;
 }
 
-//------------------------------------------
-// login template styling ------------------
-#hometitle {
-  color: red;
-  text-align: center;
-}
-
-#tagline {
-  text-align: center;
-}
-
-#login-form {
-  text-align: center;
-}
-
-#signup-link {
-  text-align: center;
-}
-
-#un-field{
-  width: 75%;
-  box-sizing: border-box;
-}
-
-#pw-field{
-  width: 75%;
-  box-sizing: border-box;
-}
-
-#login-button{
-  font-family: 'Source Code Pro';
-  width: 75%;
-  height: 2em;
-  font-size: 3em;
-  box-sizing: border-box;
-}
-
-#ip {
-  font-family: 'Source Code Pro';
-  color: red;
-  width: 75%;
-  margin: auto;
-}
-//------------------------------------------
-// category template styling ---------------
-#cat-main {
-  width: 100%;
-}
-
-#cat-title {
-  color: red;
-  text-align: center;
-  font-size: 6em;
-}
-
-#cat-form {
-  text-align: center;
+.select-options {
+  margin-top: 1em;
   list-style-type: none;
-  width: 100%;
-  // margin: auto;
 }
 
-#cat-form li{
-  width: 100%;
+.select-options button {
+  &:hover {
+    background-color: $yellow;
+    color: $black;
+  };
 }
 
-#cat-form button{
-  width: 100%;
-  height: 2em;
-  font-size: 3em;
-  box-sizing: border-box;
-}
-//------------------------------------------
-// difficulty template styling -------------
-#dif-main {
-  width: 100%;
-}
-
-#dif-title {
-  color: red;
-  text-align: center;
-  font-size: 6em;
-}
-
-#dif-form {
-  text-align: center;
-  list-style-type: none;
-  width: 100%;
-}
-
-#cat-form li{
-  width: 100%;
-}
-
-#dif-form button{
-  width: 75%;
-  height: 2em;
-  font-size: 3em;
-  box-sizing: border-box;
-}
-//------------------------------------------
-// game template styling -------------------
-#game-main {
-  width: 100%;
-}
+//-------------------------
+// Game
+//-------------------------
 
 #game-title {
-  font-family: 'Source Code Pro';
-  color: red;
-  text-align: center;
   font-size: 4vw;
 }
 
-#answer-choices {
-  font-family: 'Source Code Pro';
+.answer-choices {
+  margin-top: 1em;
   padding: 1%;
   font-weight: 600;
   line-height: 38px;
   letter-spacing: .1rem;
   border-radius: 4px;
-  border: 1px solid #bbb;
-  color: #555;
   text-align: center;
   box-sizing: border-box;
-  font-size: 2vw;
+  font-size: 1em;
   width: 100%;
   margin-bottom: 1.5rem;
+  background-color: $green-gray;
+  color: $light-gray;
   &:hover {
-    border: 1px solid yellow;
+    background-color: $yellow;
+    color: $black;
   };
 }
 
