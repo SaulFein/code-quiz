@@ -23,6 +23,11 @@ body {
   color: $gray;
 }
 
+#main {
+  max-width: 650px;
+  margin: 5% auto;
+}
+
 //-------------------------
 // Headings
 //-------------------------
@@ -98,12 +103,11 @@ button {
 }
 
 #game-title {
-  color: red;
-  text-align: center;
   font-size: 4vw;
 }
 
 #answer-choices {
+  margin-top: 1em;
   padding: 1%;
   font-weight: 600;
   line-height: 38px;

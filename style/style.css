@@ -7,6 +7,10 @@ body {
   background-color: #111;
   color: #868686; }
 
+#main {
+  max-width: 650px;
+  margin: 5% auto; }
+
 h1, h2 {
   margin: 0;
   color: #49a6d2;
@@ -63,11 +67,10 @@ button {
   width: 100%; }
 
 #game-title {
-  color: red;
-  text-align: center;
   font-size: 4vw; }
 
 #answer-choices {
+  margin-top: 1em;
   padding: 1%;
   font-weight: 600;
   line-height: 38px;

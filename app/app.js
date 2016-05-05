@@ -24,33 +24,33 @@ app.config(['$routeProvider', function(router) {
       templateUrl: 'templates/login.html'
     })
     .when('/category', {
-      controller: 'QuestionController',
-      controllerAs: 'questionCtrl',
+      // controller: 'QuestionController',
+      // controllerAs: 'questionCtrl',
       templateUrl: 'templates/category.html'
     })
     .when('/difficulty', {
-      controller: 'QuestionController',
-      controllerAs: 'questionCtrl',
+      // controller: 'QuestionController',
+      // controllerAs: 'questionCtrl',
       templateUrl: 'templates/difficulty.html'
     })
     .when('/game', {
-      controller: 'QuestionController',
-      controllerAs: 'questionCtrl',
+      // controller: 'QuestionController',
+      // controllerAs: 'questionCtrl',
       templateUrl: 'templates/game.html'
     })
     .when('/submit', {
-      controller: 'QuestionController',
-      controllerAs: 'questionCtrl',
+      // controller: 'QuestionController',
+      // controllerAs: 'questionCtrl',
       templateUrl: 'templates/submit.html'
     })
     .when('/profile', {
-      controller: 'QuestionController',
-      controllerAs: 'questionCtrl',
+      // controller: 'QuestionController',
+      // controllerAs: 'questionCtrl',
       templateUrl: 'templates/profile.html'
     })
     .when('/results', {
-      controller: 'QuestionController',
-      controllerAs: 'questionCtrl',
+      // controller: 'QuestionController',
+      // controllerAs: 'questionCtrl',
       templateUrl: 'templates/results.html'
     })
 }])
