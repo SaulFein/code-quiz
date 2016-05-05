@@ -163,6 +163,7 @@ module.exports = function(app){
 
     let url = 'http://localhost:3000/api/questions';
     let vm = this;
+    vm.correct = 0;
     vm.allQuestions = [];
 
     vm.scoreData = {
@@ -228,8 +229,10 @@ module.exports = function(app){
 
     vm.getAnswer = function(answer){
       if(answer == vm.curQuestion.answer) {
+        vm.correct = 1;
         vm.scoreData.questionsCorrect ++;
       } else {
+        vm.correct = 2;
         vm.scoreData.questionsWrong ++;
       }
       vm.scoreData.completedQuestions ++;
