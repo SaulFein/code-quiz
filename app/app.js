@@ -13,11 +13,14 @@ require('./controllers/user-controller.js')(app)
 
 app.config(['$routeProvider', function(router) {
   router
-    .when('/home', {
-      // controller: 'UserController',
-      // controllerAs: 'userctrl',
+    .when('/', {
       templateUrl: 'templates/home.html'
     })
+    // .when('/home', {
+    //   // controller: 'UserController',
+    //   // controllerAs: 'userctrl',
+    //   templateUrl: 'templates/home.html'
+    // })
     .when('/login', {
       // controller: 'UserController',
       // controllerAs: 'userctrl',
@@ -52,5 +55,10 @@ app.config(['$routeProvider', function(router) {
       // controller: 'QuestionController',
       // controllerAs: 'questionCtrl',
       templateUrl: 'templates/results.html'
+    })
+    .when('/links', {
+      // controller: 'QuestionController',
+      // controllerAs: 'questionCtrl',
+      templateUrl: 'templates/links.html'
     })
 }])
