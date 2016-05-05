@@ -211,9 +211,13 @@ module.exports = function(app){
       if(!vm.allQuestions.length)
       $http.get(url + '?category=' + vm.category + '&difficulty=' + vm.difficulty)
         .then((res) => {
+          console.log(res.data)
           vm.allQuestions = res.data.data;
+          console.log(vm.allQuestions)
           vm.curQuestion = vm.allQuestions[vm.scoreData.completedQuestions];
           vm.answers = vm.curQuestion.choices
+          console.log(vm.curQuestion)
+          console.log(vm.answers)
           vm.createScore();
         })
     }
