@@ -6,7 +6,7 @@ module.exports = (router, models) => {
 
   router.route('/questions')
     .get((req, res) => {
-      Question.find({}, (err, questions)=>{
+      Question.find({category: req.query.category, difficulty:req.query.difficulty}, (err, questions)=>{
         if(err){
           return res.json({message: err});
         }

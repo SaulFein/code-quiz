@@ -3,13 +3,14 @@
 module.exports = function(app) {
   app.factory('ScoreService', ['$http', 'AuthService', function($http, AuthService) {
     const mainRoute = "http://localhost:3000/api/";
-    var scoreId;  
+    var scoreId;
     var scoreService = {};
 
     scoreService.createScore = function(data) {
       return $http.post(mainRoute + '/users/' + data.userId + '/scores', data)
       .then((res)=>{
-        console.log(res)
+        scoreId = res.data.data._id;
+        console.log(res);
       });
     };
 
@@ -21,13 +22,15 @@ module.exports = function(app) {
       })
     };
 
-    scoreService.getScore = function(data) {
+    scoreService.getScore = function(data, cb) {
+      cb || function(){};
       return $http.get(mainRoute + '/users/' + data.userId + '/scores/' + data.scoreId, {
         headers: {
           token: AuthService.getToken()
         }
       }).then((res)=>{
         console.log(res)
+        cb(null, res)
       });
     };
 
@@ -39,8 +42,8 @@ module.exports = function(app) {
       });
     }
 
-    scoreService.updateScore = function(data) {
-      return $http.put(mainRoute + '/users/' + data.userId + '/scores/' + data.scoreId, data, {
+    scoreService.updateScore = function(data, scoreId) {
+      return $http.put(mainRoute + '/users/' + data.userId + '/scores/' + scoreId, data, {
         headers: {
           token: AuthService.getToken()
         }
@@ -56,6 +59,10 @@ module.exports = function(app) {
         }
       });
     };
+
+    scoreService.getId = function(){
+      return scoreId;
+    }
 
     return scoreService;
   }]);
