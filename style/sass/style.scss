@@ -173,7 +173,7 @@ body {
 #game-title {
   color: red;
   text-align: center;
-  font-size: 6em;
+  font-size: 4vw;
 }
 
 #answer-choices {
@@ -182,8 +182,8 @@ body {
 }
 #answer-choices button {
   width: 75%;
-  height: 2em;
-  font-size: 3em;
+  // height: 2em;
+  font-size: 2vw;
   box-sizing: border-box;
 }
 
@@ -196,7 +196,7 @@ body {
   display: inline-block;
   width: 75%;
   height: 2em;
-  font-size: 3em;
+  // font-size: 3em;
   box-sizing: border-box;
 }
 
@@ -218,7 +218,7 @@ body {
   text-align: center;
 }
 //------------------------------------------
-// game template styling -------------------
+// results template styling -------------------
 #results-main {
   width: 100%;
 }

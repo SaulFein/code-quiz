@@ -1,10 +1,10 @@
-<main id="cat-main" ng-init="questionCtrl.getQuestions()">
-    <h1 id="cat-title" ng-init="questionCtrl.getPosition()">Select a Category</h1>
-    <ul id="cat-form">
-      <li><a href="#/game" ng-click="questionCtrl.resume()" ng-show="questionCtrl.count"><button>Resume</button></a></li>
-      <li><a href="#/difficulty" ng-click="questionCtrl.getCategory('All')"><button>All</button></a></li>
-      <li><a href="#/difficulty" ng-click="questionCtrl.getCategory('Data Structures')"><button>Data Structures/Algorithms</button></a></li>
-      <li><a href="#/difficulty" ng-click="questionCtrl.getCategory('JavaScript')"><button>JavaScript</button></a></li>
-      <li><a href="#/difficulty" ng-click="questionCtrl.getCategory('HTML/CSS')"><button>HTML/CSS</button></a></li>
-    </ul>
+<main id="cat-main">
+  <h1 id="cat-title">Select a Category</h1>
+  <ul id="cat-form">
+    <!-- <li><a href="#/game" ng-click="questionCtrl.resume()" ng-show="questionCtrl.count"><button>Resume</button></a></li> -->
+    <li><button ng-click="questionCtrl.getCategory('All')">All</button></li>
+    <li><button ng-click="questionCtrl.getCategory('Data Structures')">Data Structures</button></li>
+    <li><button ng-click="questionCtrl.getCategory('JavaScript')">JavaScript</button></li>
+    <li><button ng-click="questionCtrl.getCategory('HTML/CSS')">HTML/CSS</button></li>
+  </ul>
 </main>

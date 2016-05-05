@@ -136,7 +136,7 @@ body {
 #game-title {
   color: red;
   text-align: center;
-  font-size: 6em; }
+  font-size: 4vw; }
 
 #answer-choices {
   text-align: center;
@@ -145,7 +145,7 @@ body {
 #answer-choices button {
   width: 75%;
   height: 2em;
-  font-size: 3em;
+  font-size: 2vw;
   box-sizing: border-box; }
 
 #next-wrap {
@@ -156,7 +156,6 @@ body {
   display: inline-block;
   width: 75%;
   height: 2em;
-  font-size: 3em;
   box-sizing: border-box; }
 
 #score {
