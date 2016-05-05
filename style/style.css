@@ -45,15 +45,20 @@ input[type="password"] {
 ::-ms-input-placeholder {
   color: #fff; }
 
-button {
+button,
+#next-button {
   width: 75%;
   height: 2em;
-  box-sizing: border-box;
+  padding: 0;
   border: 0;
-  background-color: #a6e22e;
-  color: #111;
+  box-sizing: border-box;
   font-size: 3em;
-  font-family: "Source Code Pro", Courier, monospace; }
+  font-family: "Source Code Pro", Courier, monospace;
+  background-color: #a6e22e;
+  color: #111; }
+  button:hover,
+  #next-button:hover {
+    color: #111; }
 
 .error-message {
   color: #f92672;
@@ -63,28 +68,30 @@ button {
   margin-top: 1em;
   list-style-type: none; }
 
-#game-main {
-  width: 100%; }
+.select-options button:hover {
+  background-color: #FFFF00;
+  color: #111; }
 
 #game-title {
   font-size: 4vw; }
 
-#answer-choices {
+.answer-choices {
   margin-top: 1em;
   padding: 1%;
   font-weight: 600;
   line-height: 38px;
   letter-spacing: .1rem;
   border-radius: 4px;
-  border: 1px solid #bbb;
-  color: #555;
   text-align: center;
   box-sizing: border-box;
-  font-size: 2vw;
+  font-size: 1em;
   width: 100%;
-  margin-bottom: 1.5rem; }
-  #answer-choices:hover {
-    border: 1px solid yellow; }
+  margin-bottom: 1.5rem;
+  background-color: #3e3d32;
+  color: #a2a199; }
+  .answer-choices:hover {
+    background-color: #FFFF00;
+    color: #111; }
 
 #next-wrap {
   text-align: center; }
