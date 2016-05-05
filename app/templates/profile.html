@@ -1,4 +1,4 @@
-<main data-ng-cloak data-ng-init="userCtrl.getScores()">
+<main data-ng-cloak data-ng-init="userctrl.getScores()">
   <h1>Profile</h1>
   <section>
     <h2>Scores</h2>
@@ -9,7 +9,7 @@
         <th>Score</th>
         <th>Status</th>
       </tr>
-      <tr data-ng-repeat="score in userCtrl.scores" class="scores">
+      <tr data-ng-repeat="score in userctrl.scores" class="scores">
         <td>{{score.category}}</td>
         <td>{{score.difficulty}}</td>
         <td>{{score.questionsCorrect}}/{{score.totalQuestions}}</td>
