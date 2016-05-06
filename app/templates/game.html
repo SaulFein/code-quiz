@@ -1,4 +1,4 @@
-<section>
+<section ng-init=userctrl.checkToken()>
   <h2 id="game-title">Question: {{questionCtrl.curQuestion.question}}</h2>
   <!-- <div id="answer-cont"> -->
   <div class="answer-choices" ng-repeat="answer in questionCtrl.answers" ng-class="{rightAns: $index == questionCtrl.selectedAns && questionCtrl.correct == 1, wrongAns: $index == questionCtrl.selectedAns && questionCtrl.correct == 2}"  ng-click="questionCtrl.getAnswer(answer); questionCtrl.itemClicked($index);">{{answer}}</div>

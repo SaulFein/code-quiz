@@ -1,6 +1,6 @@
 module.exports = function(app) {
-  app.controller('UserController',['AuthService', 'ScoreService', 'ErrorService', '$http', '$location',
-  function(AuthService, ScoreService, ErrorService, $http, $location){
+  app.controller('UserController',['AuthService', 'ScoreService', 'ErrorService', '$http', '$location','$window',
+  function(AuthService, ScoreService, ErrorService, $http, $location, $window){
     let url = 'http://localhost:3000'
     const vm = this;
     vm.user = [];
@@ -54,6 +54,12 @@ module.exports = function(app) {
       AuthService.signOut(() => {
         $location.path('/login')
       })
+    }
+
+    vm.checkToken = function() {
+      if (!$window.localStorage.token){
+        $location.path('/')
+      }
     }
 
   }])
