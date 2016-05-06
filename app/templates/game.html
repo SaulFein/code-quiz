@@ -1,14 +1,15 @@
-<section>
+<section ng-init=userctrl.checkToken()>
   <h2 id="game-title">Question: {{questionCtrl.curQuestion.question}}</h2>
   <!-- <div id="answer-cont"> -->
-  <div class="answer-choices" ng-repeat="answer in questionCtrl.answers" ng-class="{rightAns: $index == questionCtrl.selected && questionCtrl.correct == 1, wrongAns: $index == questionCtrl.selected && questionCtrl.correct == 2}"  ng-click="questionCtrl.getAnswer(answer); questionCtrl.itemClicked($index);">{{answer}}</div>
+  <div class="answer-choices" ng-repeat="answer in questionCtrl.answers" ng-class="{rightAns: $index == questionCtrl.selectedAns && questionCtrl.correct == 1, wrongAns: $index == questionCtrl.selectedAns && questionCtrl.correct == 2}"  ng-click="questionCtrl.getAnswer(answer); questionCtrl.itemClicked($index);">{{answer}}</div>
   <div id="next-button" ng-show="questionCtrl.showNextButton" ng-click="questionCtrl.showNextButton = false; questionCtrl.newQuestion()"name="button">next</div>
   <!-- </div> -->
   <footer>
-    <p id="cat-dif">{{questionCtrl.scoreData.questionsCorrect}} | {{questionCtrl.scoreData.completedQuestions}}</p>
     <p id="score">Score</p>
+    <p id="cat-dif">{{questionCtrl.scoreData.questionsCorrect}} | {{questionCtrl.scoreData.completedQuestions}}</p>
     <a id="results-link" href="#/results">Finished? Check results here!</a>
     <a id="home-link" href="#/profile">User Profile</a>
-    <a href="" ng-click="userctrl.signOut()">Logout</a>
+    <a id="logout" ng-click="userctrl.signOut()">Logout</a>
+
   </footer>
 </section>

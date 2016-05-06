@@ -130,7 +130,7 @@ button,
 //-------------------------
 
 #game-title {
-  font-size: 6vw;
+  font-size: 2em;
 }
 
 .answer-choices {
@@ -195,6 +195,7 @@ button,
 
 #score {
   text-align: center;
+  margin-bottom: 0;
 }
 
 #home-link {
@@ -209,6 +210,7 @@ button,
 
 #cat-dif {
   text-align: center;
+  margin-bottom: 0;
 }
 
 .rightAns{
@@ -269,6 +271,7 @@ button,
 td:first-child, td:last-child {
   padding: 12px 15px;
 }
+
 
 //------------------------------------------
 // links template styling ------------------
