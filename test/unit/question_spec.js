@@ -35,12 +35,21 @@ describe('question controller', ()=>{
     })
 
     it('should get some questions', () => {
+      questionCtrl.scoreData = {
+        userId: 'dumb',
+        totalQuestions: questionCtrl.allQuestions.length,
+        category: null,
+        difficulty:null,
+        questionsCorrect: 0,
+        completedQuestions:0,
+        questionsWrong: 0,
+      }
       $httpBackend.expectGET('http://localhost:3000/api/questions?category=test&difficulty=easy')
       .respond(200, {data :[{question:"who", choices:["a","b","c","d"],answer:"a",category:"test",difficulty:"Easy"},{question:"what", choices:["a","b","c","d"],answer:"a",category:"test",difficulty:"Easy"}]})
-      $httpBackend.expectPOST('http://localhost:3000/api/users/undefined/scores')
+      $httpBackend.expectPOST('http://localhost:3000/api/users/dumb/scores')
       .respond(200, {data: {_id:'dumb'}})
-      window.localStorage.cat='test';
-      window.localStorage.dif='easy';
+      questionCtrl.category ='test';
+      questionCtrl.difficulty ='easy';
       questionCtrl.getQuestions(questionCtrl.scoreData)
       $httpBackend.flush();
       expect(questionCtrl.allQuestions.length).toBe(2)
