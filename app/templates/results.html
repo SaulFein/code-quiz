@@ -1,5 +1,5 @@
 <section id="results-main" data-ng-cloak data-ng-init="questionCtrl.getScore()">
-  <h2 id="results-title">Results</h2>
+  <h2>Results</h2>
   <div id="results-score">
     <p><b data-ng-if="questionCtrl.result.completedQuestions < questionCtrl.result.totalQuestions">Your Progress:</b>
     <b data-ng-if="questionCtrl.result.completedQuestions === questionCtrl.result.totalQuestions">Your Score:</b> {{questionCtrl.result.questionsCorrect}}/{{questionCtrl.result.totalQuestions}}
