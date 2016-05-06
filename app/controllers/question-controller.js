@@ -24,6 +24,11 @@ module.exports = function(app){
       vm.selectedAns = $index;
     }
 
+    vm.results = function(){
+      vm.selectedAns = 5;
+      $location.path('/results');
+    }
+
     //called when continuing quiz from profile page, brings back previous position in a given quiz
     vm.getPosition = function(data){
         console.log('getpost data: ', data)
