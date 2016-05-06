@@ -1,8 +1,9 @@
 'use strict';
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-require(__dirname + '/../server.js');
 let config = require(__dirname + '/../config/env.js');
+config.MONGOLAB_URI='mongodb://localhost/db';
+require(__dirname + '/../server.js');
 
 chai.use(chaiHttp);
 let request = chai.request;
@@ -232,7 +233,6 @@ describe('test /questions routes', () => {
         .set('token', userToken)
         .send({difficulty: 'Hard'})
         .end((err, res) => {
-          console.log('----------- ', res.body);
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
           expect(res).to.be.json;
