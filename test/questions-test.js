@@ -1,5 +1,4 @@
 'use strict';
-
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 require(__dirname + '/../server.js');
@@ -101,7 +100,7 @@ describe('test /questions routes', () => {
 
     it('should respond to GET /questions', (done) => {
       request('localhost:' + config.PORT)
-        .get('/api/questions')
+        .get('/api/questions?category=JavaScript&difficulty=Easy')
         .set('token', userToken)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -233,6 +232,7 @@ describe('test /questions routes', () => {
         .set('token', userToken)
         .send({difficulty: 'Hard'})
         .end((err, res) => {
+          console.log('----------- ', res.body);
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
           expect(res).to.be.json;
