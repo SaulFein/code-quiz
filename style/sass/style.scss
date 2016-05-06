@@ -101,6 +101,11 @@ button,
   };
 }
 
+#next-button a{
+  text-decoration: none;
+  color: black;
+}
+
 .error-message {
   color: $red;
   clear: both;
@@ -182,7 +187,7 @@ button,
   height: 3.25em;
   width: 100%;
   &:hover {
-    border: 1px solid blue;
+    background-color: $yellow;
   };
 }
 
@@ -246,4 +251,21 @@ button,
 
 #submit-form select{
   width: 100%;
+}
+
+//------------------------------------------
+// profile template styling ----------------
+#profile-table{
+  margin: auto;
+}
+
+//------------------------------------------
+// links template styling ------------------
+#links-list {
+  list-style: none;
+}
+#links-list a{
+  text-decoration: none;
+  width: 100%;
+  display: block;
 }

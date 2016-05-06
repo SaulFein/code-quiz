@@ -60,6 +60,10 @@ button,
   #next-button:hover {
     color: #111; }
 
+#next-button a {
+  text-decoration: none;
+  color: black; }
+
 .error-message {
   color: #f92672;
   clear: both; }
@@ -126,7 +130,7 @@ button,
   height: 3.25em;
   width: 100%; }
   #next-button:hover {
-    border: 1px solid blue; }
+    background-color: #FFFF00; }
 
 #score {
   text-align: center; }
@@ -173,3 +177,14 @@ button,
 
 #submit-form select {
   width: 100%; }
+
+#profile-table {
+  margin: auto; }
+
+#links-list {
+  list-style: none; }
+
+#links-list a {
+  text-decoration: none;
+  width: 100%;
+  display: block; }
