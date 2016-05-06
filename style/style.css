@@ -60,6 +60,10 @@ button,
   #next-button:hover {
     color: #111; }
 
+#next-button a {
+  text-decoration: none;
+  color: black; }
+
 .error-message {
   color: #f92672;
   clear: both; }
@@ -173,3 +177,6 @@ button,
 
 #submit-form select {
   width: 100%; }
+
+#profile-table {
+  margin: auto; }
