@@ -1,0 +1,310 @@
+@import url('//fonts.googleapis.com/css?family=Source+Code+Pro');
+
+//-------------------------
+// Variables
+//-------------------------
+
+$font-family: 'Source Code Pro', Courier, monospace;
+$black: #111;
+$white: #fff;
+$blue: #49a6d2;
+$green: #a6e22e;
+$bright-green: #bbff33;
+$gray: #868686;
+$light-gray: #a2a199;
+$green-gray: #3e3d32;
+$red: #f92672;
+$purple: #ae81ff;
+$yellow: #FFFF00;
+$orange: #fd971d;
+
+//-------------------------
+// Base
+//-------------------------
+
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  font-family: $font-family;
+  background-color: $black;
+  color: $gray;
+}
+
+#main {
+  max-width: 650px;
+  margin: 5% auto;
+}
+
+a {
+  color: $blue;
+}
+
+//-------------------------
+// Headings
+//-------------------------
+
+h1 {
+  margin: 0;
+  color: $blue;
+  font-size: 5em;
+  text-align: center;
+}
+
+h2 {
+  @extend h1;
+  font-size: 4em;
+}
+
+h4 {
+  font-size: 2.7em;
+  color: $green;
+}
+
+//-------------------------
+// Form
+//-------------------------
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 75%;
+  height: 100%;
+  border: 1px solid $light-gray;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 3em;
+  font-family: $font-family;
+  background-color: $green-gray;
+  color: $light-gray;
+}
+
+::-moz-placeholder {
+  color: $white;
+};
+
+::-webkit-input-placeholder {
+  color: $white;
+}
+
+::-ms-input-placeholder {
+  color: $white;
+}
+
+button,
+#next-button {
+  width: 75%;
+  height: 2em;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-size: 3em;
+  font-family: $font-family;
+  background-color: $green;
+  color: $black;
+  &:hover {
+    background-color: $bright-green;
+    color: $black;
+  };
+}
+
+#next-button a{
+  text-decoration: none;
+  color: $black;
+}
+
+.error-message {
+  color: $orange;
+  clear: both;
+}
+
+.select-options {
+  margin-top: 1em;
+  list-style-type: none;
+}
+
+.select-options button {
+  &:hover {
+    background-color: $yellow;
+    color: $black;
+  };
+}
+
+//-------------------------
+// Game
+//-------------------------
+
+#game-title {
+  font-size: 2em;
+}
+
+.answer-choices {
+  margin-top: 1em;
+  padding: 1%;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  border-radius: 4px;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 1em;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  background-color: $green-gray;
+  color: $light-gray;
+  &:hover {
+    background-color: $yellow;
+    color: $black;
+  };
+}
+
+.dont-break-out {
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+}
+
+.cat-choices, .dif-choices{
+  padding: 6%;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  border-radius: 4px;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 2em;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  background-color: $green;
+  color: $black;
+  &:hover {
+    background-color: $yellow;
+  };
+}
+
+#next-wrap {
+  text-align: center;
+}
+
+#next-button {
+  padding: 1%;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  border-radius: 4px;
+  border: 0;
+  color: #555;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 1em;
+  height: 3.25em;
+  width: 100%;
+  &:hover {
+    background-color: $yellow;
+  };
+}
+
+#score {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+#home-link {
+  text-align: center;
+  display: block;
+}
+
+#results-link {
+  text-align: center;
+  display: block;
+}
+
+#cat-dif {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.rightAns{
+  background-color: #bbff33;
+  color:black;
+  &:hover {
+    background-color: #bbff33
+  }
+}
+
+.wrongAns{
+  background-color: #F22613;
+  color: black;
+  &:hover {
+    background-color: #F22613
+  }
+}
+//------------------------------------------
+// results template styling -------------------
+#results-main {
+  width: 100%;
+}
+
+#results-title {
+  color: $blue;
+  text-align: center;
+  font-size: 6em;
+}
+
+#results-score {
+  text-align: center;
+}
+
+#results-footer {
+  text-align: center;
+}
+//------------------------------------------
+// submit template styling -----------------
+#submit-form input{
+  width: 100%;
+}
+
+#submit-form select{
+  width: 100%;
+}
+
+//------------------------------------------
+// profile template styling ----------------
+#profile-table{
+  margin: 2em auto;
+}
+
+#profile-table th {
+  color: $white;
+  text-align: center;
+}
+
+td:first-child, td:last-child {
+  padding: 12px 15px;
+}
+
+
+//------------------------------------------
+// links template styling ------------------
+#links-list {
+  list-style: none;
+}
+#links-list a{
+  text-decoration: none;
+  width: 100%;
+  display: block;
+}

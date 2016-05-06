@@ -1,0 +1,23 @@
+<section data-ng-cloak data-ng-init="userctrl.getScores(); userctrl.checkToken()">
+  <h2>Profile</h2>
+  <section>
+    <h4>Quizzes</h2>
+    <div id="next-button" type="submit"><a href="#/category">Start New Quiz</a></div>
+    <table id="profile-table" cellspacing="0">
+      <tr>
+        <th>Category</th>
+        <th>Difficulty</th>
+        <th>Score</th>
+        <th>Progress</th>
+        <th>Status</th>
+      </tr>
+      <tr data-ng-repeat="score in userctrl.scores" class="scores">
+        <td>{{score.category}}</td>
+        <td>{{score.difficulty}}</td>
+        <td>{{score.questionsCorrect}}/{{score.totalQuestions}}</td>
+        <td>{{score.completedQuestions}} | {{score.totalQuestions}}</td>
+         <td><a data-ng-if="score.completedQuestions === score.totalQuestions" href="/#/category" title="Try Again">Try Again</a><a data-ng-if="score.completedQuestions < score.totalQuestions" ng-click="questionCtrl.getPosition(score)" title="Continue Quiz">Continue Quiz</a></td>
+      </tr>
+    </table>
+  </section>
+</section>

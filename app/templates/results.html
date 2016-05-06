@@ -1,0 +1,18 @@
+<section id="results-main" data-ng-cloak data-ng-init="questionCtrl.getScore()">
+  <h2 id="results-title">Results</h2>
+  <div id="results-score">
+    <p><b data-ng-if="questionCtrl.result.completedQuestions < questionCtrl.result.totalQuestions">Your Progress:</b>
+    <b data-ng-if="questionCtrl.result.completedQuestions === questionCtrl.result.totalQuestions">Your Score:</b> {{questionCtrl.result.questionsCorrect}}/{{questionCtrl.result.totalQuestions}}
+    <a data-ng-if="questionCtrl.result.completedQuestions === questionCtrl.result.totalQuestions" href="/#/category" title="Try Again">Try Again</a>
+    <a data-ng-if="questionCtrl.result.completedQuestions < questionCtrl.result.totalQuestions" ng-click="questionCtrl.getPosition(questionCtrl.result)" title="Continue Quiz">Continue Quiz</a></p>
+  </div>
+
+  <div id="results-footer">
+    <p>Need help or want to improve your score?</p>
+    <p>Check out these coding resources <a href="#/links">here</a>!</p>
+  </div>
+  <footer>
+    <a id="home-link" href="#/profile">User Profile</a>
+    <a href="" ng-click="userctrl.signOut()">Logout</a>
+  </footer>
+</section>
