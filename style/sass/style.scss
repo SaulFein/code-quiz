@@ -1,3 +1,5 @@
+@import url('//fonts.googleapis.com/css?family=Source+Code+Pro');
+
 //-------------------------
 // Variables
 //-------------------------
@@ -22,8 +24,8 @@ $orange: #fd971d;
 
 body {
   height: 100%;
-  width: 90%;
-  margin: 5% auto;
+  width: 100%;
+  margin: 0 auto;
   text-align: center;
   font-family: $font-family;
   background-color: $black;
@@ -35,6 +37,10 @@ body {
   margin: 5% auto;
 }
 
+a {
+  color: $blue;
+}
+
 //-------------------------
 // Headings
 //-------------------------
@@ -44,7 +50,6 @@ h1 {
   color: $blue;
   font-size: 5em;
   text-align: center;
-  // height: 20%;
 }
 
 h2 {
@@ -62,7 +67,8 @@ h4 {
 //-------------------------
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+select {
   width: 75%;
   height: 100%;
   border: 1px solid $light-gray;
