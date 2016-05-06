@@ -35,7 +35,7 @@ module.exports = function(app) {
           return console.log('Problem Signing In ', err);
         } else {
           vm.error = ErrorService(null);
-          $location.path('/category');
+          $location.path('/profile');
         }
       })
     }
