@@ -1,3 +1,5 @@
+@import url('//fonts.googleapis.com/css?family=Source+Code+Pro');
+
 //-------------------------
 // Variables
 //-------------------------
@@ -14,6 +16,7 @@ $green-gray: #3e3d32;
 $red: #f92672;
 $purple: #ae81ff;
 $yellow: #FFFF00;
+$orange: #fd971d;
 
 //-------------------------
 // Base
@@ -21,8 +24,8 @@ $yellow: #FFFF00;
 
 body {
   height: 100%;
-  width: 90%;
-  margin: 5% auto;
+  width: 100%;
+  margin: 0 auto;
   text-align: center;
   font-family: $font-family;
   background-color: $black;
@@ -34,6 +37,10 @@ body {
   margin: 5% auto;
 }
 
+a {
+  color: $blue;
+}
+
 //-------------------------
 // Headings
 //-------------------------
@@ -43,7 +50,6 @@ h1 {
   color: $blue;
   font-size: 5em;
   text-align: center;
-  // height: 20%;
 }
 
 h2 {
@@ -61,7 +67,8 @@ h4 {
 //-------------------------
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+select {
   width: 75%;
   height: 100%;
   border: 1px solid $light-gray;
@@ -97,17 +104,18 @@ button,
   background-color: $green;
   color: $black;
   &:hover {
+    background-color: $bright-green;
     color: $black;
   };
 }
 
 #next-button a{
   text-decoration: none;
-  color: black;
+  color: $black;
 }
 
 .error-message {
-  color: $red;
+  color: $orange;
   clear: both;
 }
 
@@ -179,7 +187,7 @@ button,
   line-height: 38px;
   letter-spacing: .1rem;
   border-radius: 4px;
-  border: 1px solid #bbb;
+  border: 0;
   color: #555;
   text-align: center;
   box-sizing: border-box;
@@ -258,19 +266,18 @@ button,
 //------------------------------------------
 // profile template styling ----------------
 #profile-table{
-  margin: auto;
-  td{
-    text-align: center;
-  }
-  a{
-    text-align: center;
-    text-decoration: none;
-    color: $green;
-  }
-  th{
-    text-align: center;
-  }
+  margin: 2em auto;
 }
+
+#profile-table th {
+  color: $white;
+  text-align: center;
+}
+
+td:first-child, td:last-child {
+  padding: 12px 15px;
+}
+
 
 //------------------------------------------
 // links template styling ------------------
