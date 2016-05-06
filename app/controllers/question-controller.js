@@ -18,11 +18,6 @@ module.exports = function(app){
     vm.category = '';
     vm.selectedAns = 5;
 
-    // vm.checkToken = function() {
-    //   if (!$window.localStorage.token){
-    //     $location.path('/')
-    //   }
-    // }
     //adds class giving color to selected answer indicating right/wrong
     vm.itemClicked = function($index) {
       if(vm.selectedAns !== 5) return
