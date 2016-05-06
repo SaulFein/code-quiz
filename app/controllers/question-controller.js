@@ -7,20 +7,7 @@ module.exports = function(app){
     vm.correct = 0;
     vm.allQuestions = [];
 
-    vm.selected = 5;
-    vm.itemClicked = function($index) {
-      vm.selected = $index;
-    }
-
-    vm.scoreData = {
-      userId: $window.localStorage.user,
-      totalQuestions: vm.allQuestions.length,
-      category: null,
-      difficulty:null,
-      questionsCorrect: 0,
-      completedQuestions:0,
-      questionsWrong: 0,
-    }
+    vm.scoreData = {};
 
     vm.showNextButton;
     vm.count = vm.scoreData.completedQuestions || 0;
@@ -29,34 +16,40 @@ module.exports = function(app){
 
     vm.difficulty = '';
     vm.category = '';
+    vm.selectedAns = 5;
 
+    //adds class giving color to selected answer indicating right/wrong
+    vm.itemClicked = function($index) {
+      if(vm.selectedAns !== 5) return
+      vm.selectedAns = $index;
+    }
+
+    //called when continuing quiz from profile page, brings back previous position in a given quiz
     vm.getPosition = function(data){
         console.log('getpost data: ', data)
         vm.scoreData = data;
         $window.localStorage.scoreId = data._id;
-        vm.category = vm.scoreData.category = $window.localStorage.cat;
-        vm.difficulty = vm.scoreData.difficulty = $window.localStorage.dif;
+        vm.category = vm.scoreData.category;
+        vm.difficulty = vm.scoreData.difficulty;
         vm.getQuestions(data)
     }
 
+    //sets category/resets scoreData object to allow for new score to be saved
     vm.getCategory = function(cat){
-      console.log( cat)
       vm.reset();
-      $window.localStorage.cat = vm.category = cat;
+      vm.scoreData.category = vm.category = cat;
       $location.path('/difficulty')
     }
 
     vm.getDifficulty = function(dif){
-      console.log(dif)
-      $window.localStorage.dif = vm.difficulty = dif;
+      vm.scoreData.difficulty = vm.difficulty = dif;
       vm.getQuestions(vm.scoreData);
     }
 
+    //gets questions based on category/difficulty selected or from previous quiz
     vm.getQuestions = function(data){
       vm.scoreData = data;
       console.log('data!!!',data)
-      vm.category = vm.scoreData.category = $window.localStorage.cat;
-      vm.difficulty = vm.scoreData.difficulty = $window.localStorage.dif;
 
       $http.get(url + '?category=' + vm.category + '&difficulty=' + vm.difficulty)
         .then((res) => {
@@ -65,9 +58,6 @@ module.exports = function(app){
           vm.scoreData.totalQuestions = vm.allQuestions.length;
           vm.curQuestion = vm.allQuestions[vm.scoreData.completedQuestions];
           vm.answers = vm.curQuestion.choices
-          console.log(vm.allQuestions)
-          console.log(vm.curQuestion)
-          console.log(vm.answers)
           if (!vm.scoreData._id) {
             console.log('CREATING SCORE')
             vm.createScore();
@@ -81,7 +71,9 @@ module.exports = function(app){
       ScoreService.createScore(vm.scoreData)
     }
 
+    //increments scoreData, updates score on db
     vm.getAnswer = function(answer){
+      if (vm.correct) return
       if(answer == vm.curQuestion.answer) {
         vm.correct = 1;
         vm.scoreData.questionsCorrect ++;
@@ -91,7 +83,6 @@ module.exports = function(app){
       }
       vm.scoreData.completedQuestions ++;
       vm.showNextButton = true;
-      console.log('THIS HAPPENED')
       console.log(vm.scoreData.completedQuestions)
       vm.updateScore(vm.scoreData);
     }
@@ -102,7 +93,7 @@ module.exports = function(app){
 
     vm.newQuestion = function(){
       vm.correct = 0;
-      vm.selected = 5;
+      vm.selectedAns = 5;
       if (vm.scoreData.completedQuestions <= vm.allQuestions.length - 1) {
         vm.curQuestion = vm.allQuestions[vm.scoreData.completedQuestions];
         vm.answers = vm.curQuestion.choices;
@@ -112,6 +103,7 @@ module.exports = function(app){
       }
     }
 
+    //used to populate db
     vm.submit = function(q){
       q.choices = [q.choices[0],q.choices[1],q.choices[2],q.choices[3]];
       $http.post(url, q, {
