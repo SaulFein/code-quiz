@@ -94,7 +94,7 @@ describe('score service tests', () => {
     it('should update a score', () => {
       $httpBackend.expectPUT('http://localhost:3000/api/users/userId/scores/scoreId')
         .respond(200, {message: 'Updated Score'});
-      ScoreService.updateScore({userId: 'userId', scoreId: 'scoreId', questionsRight: 8, questionsWrong: 2});
+      ScoreService.updateScore({userId: 'userId', scoreId: 'scoreId', questionsRight: 8, questionsWrong: 2}, 'scoreId');
       $httpBackend.flush();
     });
 
