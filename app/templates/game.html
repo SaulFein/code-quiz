@@ -5,10 +5,10 @@
   <div id="next-button" ng-show="questionCtrl.showNextButton" ng-click="questionCtrl.showNextButton = false; questionCtrl.newQuestion()"name="button">next</div>
   <!-- </div> -->
   <footer>
-    <p id="cat-dif">{{questionCtrl.scoreData.questionsCorrect}} | {{questionCtrl.scoreData.completedQuestions}}</p>
     <p id="score">Score</p>
+    <p id="cat-dif">{{questionCtrl.scoreData.questionsCorrect}} | {{questionCtrl.scoreData.completedQuestions}}</p>
     <a id="home-link" href="#/">Home</a>
     <a id="results-link" href="#/results">Finished? Check results here!</a>
-    <a href="" ng-click="userctrl.signOut()">Logout</a>
+    <a id="logout" ng-click="userctrl.signOut()">Logout</a>
   </footer>
 </section>
