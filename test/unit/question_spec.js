@@ -41,25 +41,17 @@ describe('question controller', ()=>{
       .respond(200, {data: {_id:'dumb'}})
       window.localStorage.cat='test';
       window.localStorage.dif='easy';
-      questionCtrl.getQuestions()
+      questionCtrl.getQuestions(questionCtrl.scoreData)
       $httpBackend.flush();
       expect(questionCtrl.allQuestions.length).toBe(2)
       expect(questionCtrl.answers.length).toBe(4)
       expect(questionCtrl.curQuestion.question).toBe('who')
     })
     it('should change the question', () => {
-      // $httpBackend.expectGET('http://localhost:3000/api/questions?category=test&difficulty=easy')
-      // .respond(200, {data :[{question:"who", choices:["a","b","c","d"],answer:"a",category:"test",difficulty:"Easy"},{question:"what", choices:["a","b","c","d"],answer:"a",category:"test",difficulty:"Easy"}]})
-      // $httpBackend.expectPOST('http://localhost:3000/api/users/undefined/scores')
-      // .respond(200, {data: {_id:'dumb'}})
-      // window.localStorage.cat='test';
-      // window.localStorage.dif='easy';
-      // questionCtrl.getQuestions()
-      // $httpBackend.flush();
       questionCtrl.scoreData.questionsWrong = 0;
       questionCtrl.scoreData.questionsCorrect = 0;
       questionCtrl.scoreData.completedQuestions = 0;
-      $httpBackend.expectPUT('http://localhost:3000/api/users/undefined/scores/undefined')
+      $httpBackend.expectPUT('http://localhost:3000/api/users/undefined/scores/dumb')
       .respond(200, questionCtrl.scoreData)
       questionCtrl.allQuestions = [{question:"who", choices:["a","b","c","d"],answer:"a",category:"test",difficulty:"Easy"},{question:"what", choices:["a","b","c","d"],answer:"a",category:"test",difficulty:"Easy"}]
       questionCtrl.curQuestion = questionCtrl.allQuestions[questionCtrl.scoreData.completedQuestions];
