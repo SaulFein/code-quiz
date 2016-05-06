@@ -193,6 +193,7 @@ button,
 
 #score {
   text-align: center;
+  margin-bottom: 0;
 }
 
 #home-link {
@@ -207,6 +208,7 @@ button,
 
 #cat-dif {
   text-align: center;
+  margin-bottom: 0;
 }
 
 .rightAns{
@@ -257,6 +259,17 @@ button,
 // profile template styling ----------------
 #profile-table{
   margin: auto;
+  td{
+    text-align: center;
+  }
+  a{
+    text-align: center;
+    text-decoration: none;
+    color: $green;
+  }
+  th{
+    text-align: center;
+  }
 }
 
 //------------------------------------------
