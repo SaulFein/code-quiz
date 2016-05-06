@@ -25,6 +25,9 @@ describe('code quiz homepage', function() {
 describe('code quiz', function() {
   beforeEach(function() {
     browser.get('http://127.0.0.1:8080/#/category')
+    browser.executeScript(function(){
+      window.localStorage.token = "12332434534534123123233453"
+    })
     element(by.cssContainingText('.cat-choices', 'JavaScript')).click()
     element(by.cssContainingText('.dif-choices', 'Easy')).click()
   })
