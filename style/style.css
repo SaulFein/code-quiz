@@ -60,6 +60,10 @@ button,
   #next-button:hover {
     color: #111; }
 
+#next-button a {
+  text-decoration: none;
+  color: black; }
+
 .error-message {
   color: #f92672;
   clear: both; }
@@ -73,7 +77,7 @@ button,
   color: #111; }
 
 #game-title {
-  font-size: 6vw; }
+  font-size: 2em; }
 
 .answer-choices {
   margin-top: 1em;
@@ -126,10 +130,11 @@ button,
   height: 3.25em;
   width: 100%; }
   #next-button:hover {
-    border: 1px solid blue; }
+    background-color: #FFFF00; }
 
 #score {
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 0; }
 
 #home-link {
   text-align: center;
@@ -140,7 +145,8 @@ button,
   display: block; }
 
 #cat-dif {
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 0; }
 
 .rightAns {
   background-color: #bbff33;
@@ -173,3 +179,22 @@ button,
 
 #submit-form select {
   width: 100%; }
+
+#profile-table {
+  margin: auto; }
+  #profile-table td {
+    text-align: center; }
+  #profile-table a {
+    text-align: center;
+    text-decoration: none;
+    color: #a6e22e; }
+  #profile-table th {
+    text-align: center; }
+
+#links-list {
+  list-style: none; }
+
+#links-list a {
+  text-decoration: none;
+  width: 100%;
+  display: block; }

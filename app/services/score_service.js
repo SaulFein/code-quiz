@@ -19,18 +19,14 @@ module.exports = function(app) {
         headers: {
           token: AuthService.getToken()
         }
-      })
+      });
     };
 
-    scoreService.getScore = function(data, cb) {
-      cb || function(){};
+    scoreService.getScore = function(data) {
       return $http.get(mainRoute + '/users/' + data.userId + '/scores/' + data.scoreId, {
         headers: {
           token: AuthService.getToken()
         }
-      }).then((res)=>{
-        console.log(res)
-        cb(null, res)
       });
     };
 
@@ -48,8 +44,6 @@ module.exports = function(app) {
         headers: {
           token: AuthService.getToken()
         }
-      }).then((res)=>{
-        console.log(res)
       });
     };
 

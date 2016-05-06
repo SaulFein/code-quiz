@@ -132,5 +132,18 @@ module.exports = function(app){
         questionsWrong: 0,
       }
     }
+
+    vm.getScore = function() {
+      let data = {
+        userId: AuthService.getId(),
+        scoreId: $window.localStorage.scoreId
+      };
+      ScoreService.getScore(data)
+        .then(function(res) {
+          vm.result = res.data.data;
+        }, function(err) {
+          console.log(err);
+        });
+    }
   }])
 }
