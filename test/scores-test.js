@@ -1,4 +1,5 @@
 'use strict';
+
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let config = require(__dirname + '/../config/env.js');
@@ -17,15 +18,16 @@ let userJSON = {
   password: 'winner'
 };
 
-let questionJSON = {
-  question: 'Which of the following is not a primitive data type?',
-  choices: ['Boolean', 'Object', 'Number', 'String', 'Symbol'],
-  answer: 'Object',
+let scoreJSON = {
   category: 'JavaScript',
-  difficulty: 'Easy'
+  difficulty: 'Easy',
+  totalQuestions: 10,
+  completedQuestions: 10,
+  questionsCorrect: 7,
+  questionsWrong: 3
 };
 
-describe('test /questions routes', () => {
+describe('test /users/:user/scores routes', () => {
   before((done) => {
     request('localhost:' + config.PORT)
       .post('/api/users')
@@ -43,7 +45,7 @@ describe('test /questions routes', () => {
         expect(res.body.data.username).to.equal('codequizzer');
         expect(res.body.data.password).to.not.equal(null);
         done();
-      })
+      });
   });
 
   after((done) => {
@@ -59,49 +61,51 @@ describe('test /questions routes', () => {
       });
   });
 
-  describe('GET /questions', () => {
-    let questionId;
+  describe('GET /users/:user/scores', () => {
+    let scoreId;
     before((done) => {
       request('localhost:' + config.PORT)
-        .post('/api/questions')
+        .post('/api/users/' + userId + '/scores')
         .set('token', userToken)
-        .send(questionJSON)
+        .send(scoreJSON)
         .end((err, res) => {
-          questionId = res.body.data._id;
+          scoreId = res.body.data._id;
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
           expect(res).to.be.json;
-          expect(res.body.data).to.have.property('question');
-          expect(res.body.data).to.have.property('choices');
-          expect(res.body.data).to.have.property('answer');
           expect(res.body.data).to.have.property('category');
           expect(res.body.data).to.have.property('difficulty');
-          expect(res.body.data.question).to.equal('Which of the following is not a primitive data type?');
-          expect(res.body.data.choices).to.deep.equal(['Boolean', 'Object', 'Number', 'String', 'Symbol']);
-          expect(res.body.data.answer).to.equal('Object');
+          expect(res.body.data).to.have.property('totalQuestions');
+          expect(res.body.data).to.have.property('completedQuestions');
+          expect(res.body.data).to.have.property('questionsCorrect');
+          expect(res.body.data).to.have.property('questionsWrong');
           expect(res.body.data.category).to.equal('JavaScript');
           expect(res.body.data.difficulty).to.equal('Easy');
+          expect(res.body.data.totalQuestions).to.equal(10);
+          expect(res.body.data.completedQuestions).to.equal(10);
+          expect(res.body.data.questionsCorrect).to.equal(7);
+          expect(res.body.data.questionsWrong).to.equal(3);
           done();
         });
     });
 
     after((done) => {
       request('localhost:' + config.PORT)
-        .delete('/api/questions/' + questionId)
+        .delete('/api/users/' + userId + '/scores/' + scoreId)
         .set('token', userToken)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
           expect(res).to.be.json;
           expect(res.body).to.have.property('message');
-          expect(res.body.message).to.equal('Deleted Question');
+          expect(res.body.message).to.equal('Deleted Score');
           done();
         });
     });
 
-    it('should respond to GET /questions', (done) => {
+    it('should respond to GET /users/:user/scores', (done) => {
       request('localhost:' + config.PORT)
-        .get('/api/questions?category=JavaScript&difficulty=Easy')
+        .get('/api/users/' + userId + '/scores')
         .set('token', userToken)
         .end((err, res) => {
           expect(err).to.equal(null);
@@ -109,186 +113,212 @@ describe('test /questions routes', () => {
           expect(res).to.be.json;
           let data = res.body.data;
           data = data[data.length - 1];
-          expect(data).to.have.property('question');
-          expect(data).to.have.property('choices');
-          expect(data).to.have.property('answer');
           expect(data).to.have.property('category');
           expect(data).to.have.property('difficulty');
-          expect(data.question).to.equal('Which of the following is not a primitive data type?');
-          expect(data.choices).to.deep.equal(['Boolean', 'Object', 'Number', 'String', 'Symbol']);
-          expect(data.answer).to.equal('Object');
+          expect(data).to.have.property('totalQuestions');
+          expect(data).to.have.property('completedQuestions');
+          expect(data).to.have.property('questionsCorrect');
+          expect(data).to.have.property('questionsWrong');
           expect(data.category).to.equal('JavaScript');
           expect(data.difficulty).to.equal('Easy');
+          expect(data.totalQuestions).to.equal(10);
+          expect(data.completedQuestions).to.equal(10);
+          expect(data.questionsCorrect).to.equal(7);
+          expect(data.questionsWrong).to.equal(3);
           done();
         });
     });
 
-  it('should respond to GET /questions/:question', (done) => {
+    it('should respond to GET /users/:user/scores with scoreId', (done) => {
       request('localhost:' + config.PORT)
-        .get('/api/questions/' + questionId)
+        .get('/api/users/' + userId + '/scores?category=JavaScript&difficulty=Easy')
         .set('token', userToken)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
           expect(res).to.be.json;
-          expect(res.body.data).to.have.property('question');
-          expect(res.body.data).to.have.property('choices');
-          expect(res.body.data).to.have.property('answer');
+          expect(res.body.data).to.have.property('scoreId');
+          expect(res.body.data.scoreId).to.not.equal(null);
+          done();
+        });
+    });
+
+    it('should respond to GET /users/:user/scores/:score', (done) => {
+      request('localhost:' + config.PORT)
+        .get('/api/users/' + userId + '/scores/' + scoreId)
+        .set('token', userToken)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res).to.have.status(200);
+          expect(res).to.be.json;
           expect(res.body.data).to.have.property('category');
           expect(res.body.data).to.have.property('difficulty');
-          expect(res.body.data.question).to.equal('Which of the following is not a primitive data type?');
-          expect(res.body.data.choices).to.deep.equal(['Boolean', 'Object', 'Number', 'String', 'Symbol']);
-          expect(res.body.data.answer).to.equal('Object');
+          expect(res.body.data).to.have.property('totalQuestions');
+          expect(res.body.data).to.have.property('completedQuestions');
+          expect(res.body.data).to.have.property('questionsCorrect');
+          expect(res.body.data).to.have.property('questionsWrong');
           expect(res.body.data.category).to.equal('JavaScript');
           expect(res.body.data.difficulty).to.equal('Easy');
+          expect(res.body.data.totalQuestions).to.equal(10);
+          expect(res.body.data.completedQuestions).to.equal(10);
+          expect(res.body.data.questionsCorrect).to.equal(7);
+          expect(res.body.data.questionsWrong).to.equal(3);
           done();
         });
     });
   });
 
-  describe('POST /questions', () => {
-    let questionId;
+  describe('POST /users/:user/scores', () => {
+    let scoreId;
     after((done) => {
       request('localhost:' + config.PORT)
-        .delete('/api/questions/' + questionId)
+        .delete('/api/users/' + userId + '/scores/' + scoreId)
         .set('token', userToken)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
           expect(res).to.be.json;
           expect(res.body).to.have.property('message');
-          expect(res.body.message).to.equal('Deleted Question');
+          expect(res.body.message).to.equal('Deleted Score');
           done();
         });
     });
 
-    it('should respond to POST /questions', (done) => {
+    it('should respond to POST /users/:user/scores', (done) => {
       request('localhost:' + config.PORT)
-        .post('/api/questions')
+        .post('/api/users/' + userId + '/scores')
         .set('token', userToken)
-        .send(questionJSON)
+        .send(scoreJSON)
         .end((err, res) => {
-          questionId = res.body.data._id;
+          scoreId = res.body.data._id;
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
           expect(res).to.be.json;
-          expect(res.body.data).to.have.property('question');
-          expect(res.body.data).to.have.property('choices');
-          expect(res.body.data).to.have.property('answer');
           expect(res.body.data).to.have.property('category');
           expect(res.body.data).to.have.property('difficulty');
-          expect(res.body.data.question).to.equal('Which of the following is not a primitive data type?');
-          expect(res.body.data.choices).to.deep.equal(['Boolean', 'Object', 'Number', 'String', 'Symbol']);
-          expect(res.body.data.answer).to.equal('Object');
+          expect(res.body.data).to.have.property('totalQuestions');
+          expect(res.body.data).to.have.property('completedQuestions');
+          expect(res.body.data).to.have.property('questionsCorrect');
+          expect(res.body.data).to.have.property('questionsWrong');
           expect(res.body.data.category).to.equal('JavaScript');
           expect(res.body.data.difficulty).to.equal('Easy');
+          expect(res.body.data.totalQuestions).to.equal(10);
+          expect(res.body.data.completedQuestions).to.equal(10);
+          expect(res.body.data.questionsCorrect).to.equal(7);
+          expect(res.body.data.questionsWrong).to.equal(3);
           done();
         });
     });
   });
 
-  describe('PUT /questions', () => {
-    let questionId;
+  describe('PUT /users/:user/scores/:score', () => {
+    let scoreId;
     before((done) => {
       request('localhost:' + config.PORT)
-        .post('/api/questions')
+        .post('/api/users/' + userId + '/scores')
         .set('token', userToken)
-        .send(questionJSON)
+        .send(scoreJSON)
         .end((err, res) => {
-          questionId = res.body.data._id;
+          scoreId = res.body.data._id;
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
           expect(res).to.be.json;
-          expect(res.body.data).to.have.property('question');
-          expect(res.body.data).to.have.property('choices');
-          expect(res.body.data).to.have.property('answer');
           expect(res.body.data).to.have.property('category');
           expect(res.body.data).to.have.property('difficulty');
-          expect(res.body.data.question).to.equal('Which of the following is not a primitive data type?');
-          expect(res.body.data.choices).to.deep.equal(['Boolean', 'Object', 'Number', 'String', 'Symbol']);
-          expect(res.body.data.answer).to.equal('Object');
+          expect(res.body.data).to.have.property('totalQuestions');
+          expect(res.body.data).to.have.property('completedQuestions');
+          expect(res.body.data).to.have.property('questionsCorrect');
+          expect(res.body.data).to.have.property('questionsWrong');
           expect(res.body.data.category).to.equal('JavaScript');
           expect(res.body.data.difficulty).to.equal('Easy');
+          expect(res.body.data.totalQuestions).to.equal(10);
+          expect(res.body.data.completedQuestions).to.equal(10);
+          expect(res.body.data.questionsCorrect).to.equal(7);
+          expect(res.body.data.questionsWrong).to.equal(3);
           done();
         });
     });
 
     after((done) => {
       request('localhost:' + config.PORT)
-        .delete('/api/questions/' + questionId)
+        .delete('/api/users/' + userId + '/scores/' + scoreId)
         .set('token', userToken)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
           expect(res).to.be.json;
           expect(res.body).to.have.property('message');
-          expect(res.body.message).to.equal('Deleted Question');
+          expect(res.body.message).to.equal('Deleted Score');
           done();
         });
     });
 
-    it('should respond to PUT /questions/:question', (done) => {
+    it('should respond to PUT /users/:user/scores/:score', (done) => {
       request('localhost:' + config.PORT)
-        .put('/api/questions/' + questionId)
+        .put('/api/users/' + userId + '/scores/' + scoreId)
         .set('token', userToken)
         .send({difficulty: 'Hard'})
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
           expect(res).to.be.json;
-          expect(res.body.data).to.have.property('question');
-          expect(res.body.data).to.have.property('choices');
-          expect(res.body.data).to.have.property('answer');
           expect(res.body.data).to.have.property('category');
           expect(res.body.data).to.have.property('difficulty');
-          expect(res.body.data.question).to.equal('Which of the following is not a primitive data type?');
-          expect(res.body.data.choices).to.deep.equal(['Boolean', 'Object', 'Number', 'String', 'Symbol']);
-          expect(res.body.data.answer).to.equal('Object');
+          expect(res.body.data).to.have.property('totalQuestions');
+          expect(res.body.data).to.have.property('completedQuestions');
+          expect(res.body.data).to.have.property('questionsCorrect');
+          expect(res.body.data).to.have.property('questionsWrong');
           expect(res.body.data.category).to.equal('JavaScript');
           expect(res.body.data.difficulty).to.equal('Hard');
+          expect(res.body.data.totalQuestions).to.equal(10);
+          expect(res.body.data.completedQuestions).to.equal(10);
+          expect(res.body.data.questionsCorrect).to.equal(7);
+          expect(res.body.data.questionsWrong).to.equal(3);
           done();
         });
     });
   });
 
-  describe('DELETE /questions', () => {
-    let questionId;
+  describe('DELETE /users/:user/scores/:score', () => {
+    let scoreId;
     before((done) => {
       request('localhost:' + config.PORT)
-        .post('/api/questions')
+        .post('/api/users/' + userId + '/scores')
         .set('token', userToken)
-        .send(questionJSON)
+        .send(scoreJSON)
         .end((err, res) => {
-          questionId = res.body.data._id;
+          scoreId = res.body.data._id;
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
           expect(res).to.be.json;
-          expect(res.body.data).to.have.property('question');
-          expect(res.body.data).to.have.property('choices');
-          expect(res.body.data).to.have.property('answer');
           expect(res.body.data).to.have.property('category');
           expect(res.body.data).to.have.property('difficulty');
-          expect(res.body.data.question).to.equal('Which of the following is not a primitive data type?');
-          expect(res.body.data.choices).to.deep.equal(['Boolean', 'Object', 'Number', 'String', 'Symbol']);
-          expect(res.body.data.answer).to.equal('Object');
+          expect(res.body.data).to.have.property('totalQuestions');
+          expect(res.body.data).to.have.property('completedQuestions');
+          expect(res.body.data).to.have.property('questionsCorrect');
+          expect(res.body.data).to.have.property('questionsWrong');
           expect(res.body.data.category).to.equal('JavaScript');
           expect(res.body.data.difficulty).to.equal('Easy');
+          expect(res.body.data.totalQuestions).to.equal(10);
+          expect(res.body.data.completedQuestions).to.equal(10);
+          expect(res.body.data.questionsCorrect).to.equal(7);
+          expect(res.body.data.questionsWrong).to.equal(3);
           done();
         });
     });
 
-    it('should respond to DELETE /questions/:question', (done) => {
+    it('should respond to DELETE /users/:user/scores/:score', (done) => {
       request('localhost:' + config.PORT)
-        .delete('/api/questions/' + questionId)
+        .delete('/api/users/' + userId + '/scores/' + scoreId)
         .set('token', userToken)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
           expect(res).to.be.json;
           expect(res.body).to.have.property('message');
-          expect(res.body.message).to.equal('Deleted Question');
+          expect(res.body.message).to.equal('Deleted Score');
           done();
         });
     });
-  })
-})
+  });
+});

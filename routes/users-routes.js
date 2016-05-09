@@ -6,7 +6,10 @@ module.exports = (router, models) => {
 
   router.route('/users')
     .get(jwtAuth, (req, res) => {
-      User.find({}, (err, users) => {
+      User
+      .find({})
+      .populate('scores')
+      .exec((err, users) => {
         if (err) {
           return res.send(err);
         }
@@ -39,7 +42,10 @@ module.exports = (router, models) => {
 
   router.route('/users/:user')
     .get(jwtAuth, (req, res) => {
-      User.findById(req.params.user, (err, user) => {
+      User
+      .findById(req.params.user)
+      .populate('scores')
+      .exec((err, user) => {
         if (err) {
           return res.send(err);
         }
