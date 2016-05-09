@@ -1,0 +1,11 @@
+<section id="home-main">
+  <h1 id="hometitle">Code Quiz</h1>
+  <h4 id="tagline">Score a great job!</h4>
+  <p class="error-message" ng-show="userctrl.uae">Username already exists!</p>
+  <form id="sign-in-form" ng-submit="userctrl.createUser(user)">
+    <input id="un-field" type="text" placeholder="username" value="username" ng-model="user.username" required/>
+    <input id="pw-field" type="password" placeholder="password" value="password" ng-model="user.password" required/>
+    <button id="signup-button" type="submit">SignUp</button>
+  </form>
+  <p id="login-link">Already have an account? <a href="#/login">Login</a> here!</p>
+</section>
