@@ -2,7 +2,7 @@
 module.exports = function(app){
   app.controller('QuestionController',['$http','$window','$location','AuthService','ScoreService', function($http, $window, $location, AuthService, ScoreService){
 
-    let url = 'https://localhost:3000/api/questions';
+    let url = 'http://localhost:3000/api/questions';
     let vm = this;
     vm.correct = 0;
     vm.allQuestions = [];
