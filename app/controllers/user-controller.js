@@ -1,7 +1,7 @@
 module.exports = function(app) {
   app.controller('UserController',['AuthService', 'ScoreService', 'ErrorService', '$http', '$location','$window',
   function(AuthService, ScoreService, ErrorService, $http, $location, $window){
-    let url = 'https://localhost:3000'
+    let url = 'http://localhost:3000'
     const vm = this;
     vm.user = [];
     vm.scores = [];
