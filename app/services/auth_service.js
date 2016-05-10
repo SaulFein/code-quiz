@@ -2,7 +2,7 @@ module.exports = function(app) {
   app.factory('AuthService', ['$http', '$window',function($http, $window) {
     var token;
     var userId;
-    var url = 'https://localhost:3000'
+    var url = 'http://localhost:3000'
     var auth = {
       createUser(user, cb) {
         cb || function() {};
