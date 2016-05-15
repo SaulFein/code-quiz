@@ -2,7 +2,7 @@
 module.exports = function(app){
   app.controller('QuestionController',['$http','$window','$location','AuthService','ScoreService', function($http, $window, $location, AuthService, ScoreService){
 
-    let url = 'http://localhost:3000/api/questions';
+    let url = '/api/questions';
     let vm = this;
     vm.correct = 0; // true or false based on answer, not incremented
     vm.allQuestions = [];
@@ -30,6 +30,13 @@ module.exports = function(app){
       vm.difficulty = vm.scoreData.difficulty;
       vm.getQuestions(vm.scoreData)
     }
+
+    vm.results = function(){
+      vm.selectedAns = 5;
+      $location.path('/results');
+    }
+
+
     //called when continuing quiz from profile page, brings back previous position in a given quiz
     vm.getPosition = function(data){
 

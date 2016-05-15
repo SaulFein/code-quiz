@@ -1,7 +1,7 @@
 module.exports = function(app) {
   app.controller('UserController',['AuthService', 'ScoreService', 'ErrorService', '$http', '$location','$window',
   function(AuthService, ScoreService, ErrorService, $http, $location, $window){
-    let url = 'http://localhost:3000'
+    // let url = 'http://localhost:3000'
     const vm = this;
     vm.user = [];
     vm.scores = [];
@@ -10,7 +10,7 @@ module.exports = function(app) {
     vm.ip = false; //ip = invalid password
 
     vm.createUser = function(user) {
-      $http.post(url + '/signup', user, {
+      $http.post('/signup', user, {
         headers: {
           token: AuthService.getToken()
         }
