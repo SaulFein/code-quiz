@@ -6,6 +6,8 @@ module.exports = function(app) {
     let scoreId;
     let scoreService = {};
 
+    scoreService.score = null;
+
     scoreService.createScore = function(data) {
       return $http.post('/api/users/' + data.userId + '/scores', data)
       .then((res)=>{
@@ -27,6 +29,9 @@ module.exports = function(app) {
         headers: {
           token: AuthService.getToken()
         }
+      }).then((res) => {
+        console.log(res)
+        return res.data.data;
       });
     };
 
@@ -40,6 +45,7 @@ module.exports = function(app) {
 
     scoreService.updateScore = function(data, scoreId) {
       console.log(scoreId)
+      $window.localStorage.data = JSON.stringify(data);
       return $http.put('/api/users/' + data.userId + '/scores/' + scoreId, data, {
         headers: {
           token: AuthService.getToken()

@@ -22,8 +22,7 @@ module.exports = function(app) {
       },
       signOut(cb) {
         token = null;
-        $window.localStorage.token = null;
-        $window.localStorage.scoreId = $window.localStorage.user = null;
+        $window.localStorage.clear()
         if (cb) cb();
       },
       signIn(user, cb) {

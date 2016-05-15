@@ -58,7 +58,7 @@ module.exports = function(app) {
 
     vm.checkToken = function() {
       if (!$window.localStorage.token){
-        $location.path('/')
+        $location.path('/');
       }
     }
 

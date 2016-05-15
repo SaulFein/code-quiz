@@ -16,7 +16,7 @@
         <td>{{score.difficulty}}</td>
         <td>{{score.questionsCorrect}}/{{score.totalQuestions}}</td>
         <td>{{score.completedQuestions}} | {{score.totalQuestions}}</td>
-         <td><a data-ng-if="score.completedQuestions === score.totalQuestions" href="/#/category" title="Try Again">Try Again</a><a data-ng-if="score.completedQuestions < score.totalQuestions" ng-click="questionCtrl.getPosition(score)" title="Continue Quiz">Continue Quiz</a></td>
+         <td><a data-ng-if="score.completedQuestions === score.totalQuestions" href="/#/category" title="Try Again">Try Again</a><a data-ng-if="score.completedQuestions < score.totalQuestions" href='' ng-click="questionCtrl.getPosition(score)" title="Continue Quiz">Continue Quiz</a></td>
       </tr>
     </table>
   </section>
