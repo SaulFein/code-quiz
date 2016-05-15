@@ -4,7 +4,7 @@ module.exports = function(app){
 
     let url = 'http://localhost:3000/api/questions';
     let vm = this;
-    vm.correct = 0;
+    vm.correct = 0; // true or false based on answer, not incremented
     vm.allQuestions = [];
 
     vm.scoreData = {};
@@ -18,25 +18,27 @@ module.exports = function(app){
     vm.category = '';
     vm.selectedAns = 5;
 
-    // vm.checkToken = function() {
-    //   if (!$window.localStorage.token){
-    //     $location.path('/')
-    //   }
-    // }
     //adds class giving color to selected answer indicating right/wrong
     vm.itemClicked = function($index) {
       if(vm.selectedAns !== 5) return
       vm.selectedAns = $index;
     }
 
+    vm.refresh = function(){
+      vm.scoreData = JSON.parse($window.localStorage.data)
+      vm.category = vm.scoreData.category;
+      vm.difficulty = vm.scoreData.difficulty;
+      vm.getQuestions(vm.scoreData)
+    }
     //called when continuing quiz from profile page, brings back previous position in a given quiz
     vm.getPosition = function(data){
-        console.log('getpost data: ', data)
-        vm.scoreData = data;
-        $window.localStorage.scoreId = data._id;
-        vm.category = vm.scoreData.category;
-        vm.difficulty = vm.scoreData.difficulty;
-        vm.getQuestions(data)
+
+      console.log('getpost data: ', data)
+      vm.scoreData = data;
+      $window.localStorage.scoreId = data._id;
+      vm.category = vm.scoreData.category;
+      vm.difficulty = vm.scoreData.difficulty;
+      vm.getQuestions(data)
     }
 
     //sets category/resets scoreData object to allow for new score to be saved
@@ -54,6 +56,7 @@ module.exports = function(app){
     //gets questions based on category/difficulty selected or from previous quiz
     vm.getQuestions = function(data){
       vm.scoreData = data;
+      $window.localStorage.data = JSON.stringify(data)
       console.log('data!!!',data)
 
       $http.get(url + '?category=' + vm.category + '&difficulty=' + vm.difficulty)
@@ -122,6 +125,8 @@ module.exports = function(app){
     }
 
     vm.reset = function(){
+      vm.correct = 0;
+      vm.selectedAns = 5;
       vm.scoreData = {
         userId: $window.localStorage.user,
         totalQuestions: vm.allQuestions.length,
